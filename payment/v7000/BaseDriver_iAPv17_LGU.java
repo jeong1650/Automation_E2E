@@ -40,21 +40,17 @@ String productname;
 	}	
 
 	public void Password() throws Exception {
-	   Thread.sleep(2000);
-	   driver.findElementByXPath("//android.widget.EditText[@resource-id='pin1']").sendKeys("0");
-		   
-	   Thread.sleep(2000);
-	   driver.findElementByXPath("//android.widget.EditText[@resource-id='pin2']").sendKeys("0");
-		   
-	   Thread.sleep(2000);
-	   driver.findElementByXPath("//android.widget.EditText[@resource-id='pin3']").sendKeys("0");
-		   
-	   Thread.sleep(2000);
-	   driver.findElementByXPath("//android.widget.EditText[@resource-id='pin4']").sendKeys("0");
-		   
-	   Thread.sleep(3000);
-	   driver.findElementByXPath("//android.view.View[@text='확인']").click();
-	   
+		Thread.sleep(2000);
+		   driver.findElementByXPath("//*[@text='0']").click();
+		  
+		   Thread.sleep(2000);
+		   driver.findElementByXPath("//*[@text='0']").click();
+		  
+		   Thread.sleep(2000);
+		   driver.findElementByXPath("//*[@text='0']").click();
+			   
+		   Thread.sleep(2000);
+		   driver.findElementByXPath("//*[@text='0']").click();	  
 	}
 
 	public void ResultPrint() throws Exception {
