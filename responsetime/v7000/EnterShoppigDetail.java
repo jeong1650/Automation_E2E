@@ -2,7 +2,7 @@ package osc_e2e.responsetime.v7000;
 
 import org.junit.Test;
 
-public class EnterGameDetail extends ResponseTimeMeasureBase{
+public class EnterShoppigDetail extends ResponseTimeMeasureBase{
 	
 	@Test
 	public void EnterGameDetailTest() throws Exception {
@@ -23,18 +23,18 @@ public class EnterGameDetail extends ResponseTimeMeasureBase{
 			driver.findElementById("com.skt.skaf.A000Z00040:id/searchbar_keyword_edittext").click();
 			
 			Thread.sleep(2000);
-			driver.findElementById("com.skt.skaf.A000Z00040:id/searchbar_keyword_edittext").sendKeys("데칼코마니");
+			driver.findElementById("com.skt.skaf.A000Z00040:id/searchbar_keyword_edittext").sendKeys("무선 노이즈 캔슬링 블루투스 헤드폰");
 			
 			Thread.sleep(2000);
 			driver.findElementById("com.skt.skaf.A000Z00040:id/searchbar_search_icon").click();
 			
 			Thread.sleep(2000);
-			driver.findElementById("com.skt.skaf.A000Z00040:id/search_result_item_app_title").click();
+			driver.findElementById("com.skt.skaf.A000Z00040:id/search_result_item_shop_title").click();
 			clickProductTitleTime = System.nanoTime();
 			
 			while (true) {
 				try {
-					driver.findElementById("com.skt.skaf.A000Z00040:id/lay_root").isDisplayed();
+					driver.findElementById("com.skt.skaf.A000Z00040:id/main_info_product_image_viewpager").isDisplayed();
 					enterDetailTime = System.nanoTime();
 					break;
 				} catch (Exception e) {}

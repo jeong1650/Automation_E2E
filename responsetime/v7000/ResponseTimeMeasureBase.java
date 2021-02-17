@@ -31,11 +31,11 @@ public class ResponseTimeMeasureBase {
 	}	
 
 	@After
-	public void sessionexit() throws Exception {
+	public void sessionExit() throws Exception {
 		driver.quit();
 	}
 
-	public void Check() throws Exception {
+	public void popupCheck() throws Exception {
 		try {
 			if (driver.findElementById("com.skt.skaf.A000Z00040:id/event_popup_close").isDisplayed())
 				driver.findElementById("com.skt.skaf.A000Z00040:id/event_popup_close").click();

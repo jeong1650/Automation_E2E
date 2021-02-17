@@ -2,7 +2,7 @@ package osc_e2e.responsetime.v7000;
 
 import org.junit.Test;
 
-public class EnterGameDetail extends ResponseTimeMeasureBase{
+public class EnterAppDetail extends ResponseTimeMeasureBase{
 	
 	@Test
 	public void EnterGameDetailTest() throws Exception {
@@ -23,7 +23,7 @@ public class EnterGameDetail extends ResponseTimeMeasureBase{
 			driver.findElementById("com.skt.skaf.A000Z00040:id/searchbar_keyword_edittext").click();
 			
 			Thread.sleep(2000);
-			driver.findElementById("com.skt.skaf.A000Z00040:id/searchbar_keyword_edittext").sendKeys("데칼코마니");
+			driver.findElementById("com.skt.skaf.A000Z00040:id/searchbar_keyword_edittext").sendKeys("카카오톡");
 			
 			Thread.sleep(2000);
 			driver.findElementById("com.skt.skaf.A000Z00040:id/searchbar_search_icon").click();
