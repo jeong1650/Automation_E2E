@@ -84,25 +84,27 @@ public class iAPv17_KT_E2E extends BaseDriver_iAPv17_KT {
 
 		Thread.sleep(3000);
 		upSwipe(0.90);
+		upSwipe(0.90);
+		upSwipe(0.90);
 
 		Thread.sleep(2000);
-		driver.findElementByXPath("//android.view.View[@resource-id='btnSelectMainPaymethod_telebillcarrier']").click();
+		driver.findElementByXPath("//*[@resource-id='btnSelectMainPaymethod_telebillcarrier']").click();
 		System.out.println("-----ClickDcbButton");
 
-		driver.findElementByXPath("//android.widget.TextView[@text='위 내용을 확인하였으며 구매진행에 동의합니다.']").click();
+		driver.findElementByXPath("//*[@text='위 내용을 확인하였으며 구매진행에 동의합니다.']").click();
 		System.out.println("-----ClickPurchaseAgreement");
 
 		Thread.sleep(3000);
-//   	driver.swipe(550, 2040, 550, 2040, 0);  //결제버튼 SM-G970NK 
-		driver.findElementByXPath("//android.view.View[@resource-id='divPaySubmitDiscountInfo']").click();// Swipe 인식이 되지 않아, resource-id 로 변경
+		driver.swipe(550, 1930, 550, 1930, 0);  //결제버튼 SM-G970NK 
+//		driver.findElementByXPath("//*[@resource-id='divPaySubmitDiscountInfo']").click();// Swipe 인식이 되지 않아, resource-id 로 변경
 		System.out.println("-----ClickPurchaseButton");
 
 		Thread.sleep(2000);
 		try {
-			if (driver.findElementByXPath("//android.view.View[@text='SK텔레콤 휴대폰결제 이용안내']").isDisplayed())
+			if (driver.findElementByXPath("//*[@text='SK텔레콤 휴대폰결제 이용안내']").isDisplayed())
 				;
 			Thread.sleep(2500);
-			driver.findElementByXPath("//android.view.View[@text='동의']").click();
+			driver.findElementByXPath("//*[@text='동의']").click();
 		} catch (Exception d) {
 		}
 
@@ -181,6 +183,7 @@ public class iAPv17_KT_E2E extends BaseDriver_iAPv17_KT {
 
 		}
 		System.out.println("close");
+	}
 	}
 
 }
