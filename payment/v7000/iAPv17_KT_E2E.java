@@ -184,6 +184,5 @@ public class iAPv17_KT_E2E extends BaseDriver_iAPv17_KT {
 		}
 		System.out.println("close");
 	}
-	}
 
 }
