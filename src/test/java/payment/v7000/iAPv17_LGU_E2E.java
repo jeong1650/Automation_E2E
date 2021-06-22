@@ -104,8 +104,10 @@ public class iAPv17_LGU_E2E extends BaseDriver_iAPv17_LGU {
 		}
 
 		Thread.sleep(1500);
-		upSwipe(0.90);
-
+		upSwipe(0.80);
+		upSwipe(0.80);
+		upSwipe(0.80);
+		
 		Thread.sleep(2000);
 		driver.findElementByXPath("//android.view.View[@resource-id='btnSelectMainPaymethod_telebillcarrier']").click();
 		System.out.println("-----ClickDcbButton");
