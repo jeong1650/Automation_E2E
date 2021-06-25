@@ -13,6 +13,7 @@ import com.google.api.client.http.HttpTransport;
 import com.google.api.client.http.javanet.NetHttpTransport;
 import com.google.api.client.json.JsonFactory;
 import com.google.api.client.json.jackson2.JacksonFactory;
+import com.google.common.collect.ImmutableMap;
 import com.google.gdata.client.spreadsheet.SpreadsheetService;
 import com.google.gdata.data.PlainTextConstruct;
 import com.google.gdata.data.spreadsheet.CellEntry;
@@ -53,11 +54,13 @@ public class Download_SKT_E2E extends BaseDriver_Download_SKT {
 
 		Thread.sleep(2000);
 		driver.findElementById("com.skt.skaf.A000Z00040:id/searchbar_keyword_edittext").click(); // 검색어 입력
+		
+		Thread.sleep(2000);
 		driver.findElementById("com.skt.skaf.A000Z00040:id/searchbar_keyword_edittext").sendKeys("알약");
 		System.out.println("------searchKeywordwrite-------");
 
 		Thread.sleep(2000);
-		driver.findElementById("com.skt.skaf.A000Z00040:id/searchbar_search_icon").click(); // 검색어 입력 후 버튼 선택
+        driver.executeScript("mobile: performEditorAction", ImmutableMap.of("action", "search"));
 		System.out.println("------searchiconClick-------");
 
 		double startTimesearchEnter = System.nanoTime();
