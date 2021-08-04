@@ -35,7 +35,7 @@ String productname;
 		DesiredCapabilities capabilities = new DesiredCapabilities();
 		capabilities.setCapability("deviceName", "appium");
 		capabilities.setCapability("unicodeKeyboard", true);
-		capabilities.setCapability("udid", "R3CM406ZMP");
+		capabilities.setCapability("udid", "R3CN70KYZJ");
 		capabilities.setCapability("appPackage", "com.onestore.iap.apisample.test1");
 		capabilities.setCapability("appActivity", "com.onestore.iap.apisample.ApiCallActivity");
 		capabilities.setCapability("platformVersion", "10");

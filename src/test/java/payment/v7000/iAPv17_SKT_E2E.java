@@ -112,11 +112,11 @@ public class iAPv17_SKT_E2E extends BaseDriver_iAPv17_SKT {
 		driver.findElementByXPath("//android.view.View[@resource-id='btnSelectMainPaymethod_telebillcarrier']").click();
 		System.out.println("-----ClickDcbButton");
 
-		driver.findElementByXPath("//android.widget.TextView[@text='위 내용을 확인하였으며 구매진행에 동의합니다.']").click();
+		driver.findElementByXPath("//*[@text='위 내용을 확인하였으며 구매진행에 동의합니다.']").click();
 		System.out.println("-----ClickPurchaseAgreement");
 
 		Thread.sleep(2000);
-		driver.swipe(550, 2050, 550, 2050, -1); // 결제버튼 SM-N971N / Galaxy Note10
+		driver.swipe(350, 1400, 350, 1400, -1); // 결제버튼 SM-N971N / Galaxy Note10
 
 		System.out.println("-----ClickPurchaseButton");
 
@@ -138,7 +138,7 @@ public class iAPv17_SKT_E2E extends BaseDriver_iAPv17_SKT {
 
 		Thread.sleep(2000);
 		totalThreadSleepTime += 2;
-		driver.findElementByXPath("//android.view.View[@text='결제 완료']").isDisplayed();
+		driver.findElementByXPath("//*[@text='결제 완료']").isDisplayed();
 		double endTimeCompletePayment = System.nanoTime();
 		System.out.println(endTimeCompletePayment);
 		double CompletePayment = Double.parseDouble(String.format("%.2f",
@@ -176,7 +176,7 @@ public class iAPv17_SKT_E2E extends BaseDriver_iAPv17_SKT {
 		driver.findElementById("com.onestore.iap.apisample.test1:id/btn_api_call").click();
 		System.out.println("-----CallConsumeAPI");
 
-		Thread.sleep(2500);
+		Thread.sleep(3000);
 		assertEquals("0 : 성공", driver.findElementById("com.onestore.iap.apisample.test1:id/tv_log").getText());
 		System.out.println("-----SuccessConsume");
 

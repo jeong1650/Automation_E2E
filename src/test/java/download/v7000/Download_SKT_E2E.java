@@ -98,11 +98,15 @@ public class Download_SKT_E2E extends BaseDriver_Download_SKT {
 		double startTimeCompletedownload = System.nanoTime();
 		System.out.println(startTimeCompletedownload);
 
-		Thread.sleep(50000);
-		totalThreadSleepTime += 50;
-		driver.findElementByXPath("//*[@text='실행']").isDisplayed(); // 다운로드 => 실행 버튼으로 바뀜 확인
-
+		while(true) {
+			try {
+				driver.findElementByXPath("//*[@text='실행']").isDisplayed();
+				break;
+			} catch(Exception e) {}
+		}
+		
 		double endTimeCompletedownload = System.nanoTime();
+		
 		System.out.println(endTimeCompletedownload);
 		double CompletedownloadResult = Double.parseDouble(String.format("%.2f",
 				(((endTimeCompletedownload - startTimeCompletedownload) / 1000000000) - totalThreadSleepTimedownload)));

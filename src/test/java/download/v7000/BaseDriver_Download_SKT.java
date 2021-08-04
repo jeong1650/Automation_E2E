@@ -33,7 +33,7 @@ String productname;
 		DesiredCapabilities capabilities = new DesiredCapabilities();
 		capabilities.setCapability("deviceName", "appium");
 		capabilities.setCapability("unicodeKeyboard", true);
-		capabilities.setCapability("udid", "R3CM406ZMP");
+		capabilities.setCapability("udid", "R3CN70KYZJ");
 		capabilities.setCapability("appPackage", "com.skt.skaf.A000Z00040");
 		capabilities.setCapability("appActivity", "A000Z00040");
 		capabilities.setCapability("platformVersion", "10");
@@ -47,6 +47,12 @@ String productname;
 			driver.findElementById("com.skt.skaf.A000Z00040:id/event_popup_close").isDisplayed();
 			System.out.println("----------eventPopup----------");
 			driver.findElementById("com.skt.skaf.A000Z00040:id/event_popup_close").click();
+		} catch (Exception e) {
+			System.out.println("popupfail");
+		}
+		try {
+			driver.findElementByXPath("//*[@resource-id='todayCloseBtn']").click();
+			System.out.println("----------eventPopup----------");
 		} catch (Exception e) {
 			System.out.println("popupfail");
 		}
