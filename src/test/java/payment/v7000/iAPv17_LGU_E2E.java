@@ -202,8 +202,8 @@ public class iAPv17_LGU_E2E extends BaseDriver_iAPv17_LGU {
 		
 		String sheetId = "1dou3BOX9bmTQ6XjtspX1-7V-tbmxFJ--wOrltiyW1bE"; // 시트 Key
         String sheetName = new SimpleDateFormat("yyyy-MM").format(System.currentTimeMillis()); // 년-월 단위 분리를 위한 시트명 생성
-        String keyFileName = "norse-bond-259605-5482c1faa5f5.p12";
-        String id = "test-957@norse-bond-259605.iam.gserviceaccount.com";
+        String keyFileName = "norse-bond-259605-eb1188cf3bcf.p12";
+        String id = "test2-165@norse-bond-259605.iam.gserviceaccount.com";
         
         ClassLoader classloader = Thread.currentThread().getContextClassLoader();
         URL url = classloader.getResource(keyFileName); // p12 Key

@@ -206,8 +206,8 @@ public class iAPv17_KT_E2E extends BaseDriver_iAPv17_KT {
 		
 		String sheetId = "1VXQrjL77S21Ahckv2rZYrui8ScDyoZPGDSAx4p70e_w"; // 시트 Key
         String sheetName = new SimpleDateFormat("yyyy-MM").format(System.currentTimeMillis()); // 년-월 단위 분리를 위한 시트명 생성
-        String keyFileName = "norse-bond-259605-5482c1faa5f5.p12";
-        String id = "test-957@norse-bond-259605.iam.gserviceaccount.com";
+        String keyFileName = "norse-bond-259605-eb1188cf3bcf.p12";
+        String id = "test2-165@norse-bond-259605.iam.gserviceaccount.com";
         
         ClassLoader classloader = Thread.currentThread().getContextClassLoader();
         URL url = classloader.getResource(keyFileName); // p12 Key
