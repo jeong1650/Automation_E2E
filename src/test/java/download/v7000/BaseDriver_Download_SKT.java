@@ -33,7 +33,7 @@ String productname;
 		DesiredCapabilities capabilities = new DesiredCapabilities();
 		capabilities.setCapability("deviceName", "appium");
 		capabilities.setCapability("unicodeKeyboard", true);
-		capabilities.setCapability("udid", "R3CN70KYZJ");
+		capabilities.setCapability("udid", "R3CMB0PNA8");
 		capabilities.setCapability("appPackage", "com.skt.skaf.A000Z00040");
 		capabilities.setCapability("appActivity", "A000Z00040");
 		capabilities.setCapability("platformVersion", "10");

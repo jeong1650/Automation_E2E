@@ -35,7 +35,7 @@ String productname;
 		DesiredCapabilities capabilities = new DesiredCapabilities();
 		capabilities.setCapability("deviceName", "appium");
 		capabilities.setCapability("unicodeKeyboard", true);
-		capabilities.setCapability("udid", "R3CN70KYZJ");
+		capabilities.setCapability("udid", "R3CMB0PNA8");
 		capabilities.setCapability("appPackage", "com.onestore.iap.apisample.test1");
 		capabilities.setCapability("appActivity", "com.onestore.iap.apisample.ApiCallActivity");
 		capabilities.setCapability("platformVersion", "10");
@@ -103,6 +103,7 @@ String productname;
 //		System.out.println("IAPv17 inappEnterTime E2E Result / " + inappEnterResult);
 		System.out.println("                 END                 ");
 		System.out.println("======================================");
+		
 		driver.quit();		
 	}
 

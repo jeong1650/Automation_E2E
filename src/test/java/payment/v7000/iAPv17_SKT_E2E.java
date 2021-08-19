@@ -116,7 +116,7 @@ public class iAPv17_SKT_E2E extends BaseDriver_iAPv17_SKT {
 		System.out.println("-----ClickPurchaseAgreement");
 
 		Thread.sleep(2000);
-		driver.swipe(350, 1400, 350, 1400, -1); // 결제버튼 SM-N971N / Galaxy Note10
+		driver.swipe(550, 2150, 550, 2150, -1); // 결제버튼 SM-N971N / Galaxy Note10
 
 		System.out.println("-----ClickPurchaseButton");
 
