@@ -143,7 +143,9 @@ public class iAPv17_SKT_E2E extends BaseDriver_iAPv17_SKT {
 		System.out.println(endTimeCompletePayment);
 		double CompletePayment = Double.parseDouble(String.format("%.2f",
 				(((endTimeCompletePayment - startTimeCompletePayment) / 1000000000) - totalThreadSleepTime)));
-
+		
+		result = "PASS";
+		
 		Thread.sleep(4000);
 		upSwipe(0.70);
 		
@@ -164,6 +166,7 @@ public class iAPv17_SKT_E2E extends BaseDriver_iAPv17_SKT {
 
 		Thread.sleep(2500);
 		String purchaseId = driver.findElementById("com.onestore.iap.apisample.test1:id/tv_log").getText();
+		System.out.println(purchaseId);
 		System.out.println("-----getPurchaseId");
 
 		Thread.sleep(2500);
@@ -181,7 +184,6 @@ public class iAPv17_SKT_E2E extends BaseDriver_iAPv17_SKT {
 		System.out.println("-----SuccessConsume");
 
 		ResultPrint();
-		result = "PASS";
 
 		SimpleDateFormat sdf = new SimpleDateFormat("YYYY/MM/dd kk:mm");
 		Date date = new Date();
