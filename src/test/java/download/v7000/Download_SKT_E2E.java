@@ -23,6 +23,7 @@ import com.google.gdata.data.spreadsheet.ListFeed;
 import com.google.gdata.data.spreadsheet.SpreadsheetFeed;
 import com.google.gdata.data.spreadsheet.WorksheetEntry;
 import com.google.gdata.data.spreadsheet.WorksheetFeed;
+import lib.Cmd;
 
 import java.io.File;
 import java.net.URL;
@@ -42,9 +43,19 @@ public class Download_SKT_E2E extends BaseDriver_Download_SKT {
 		result = "FAIL";
 		size = driver.manage().window().getSize();
 
+		Cmd cmd = new Cmd();
+		String oscVer = cmd.execCommand(cmd.inputCommand("adb shell dumpsys package com.skt.skaf.A000Z00040 | grep -m 1 versionName")).trim();
+		String ossVer = cmd.execCommand(cmd.inputCommand("adb shell dumpsys package com.skt.skaf.OA00018282 | grep -m 1 versionName")).trim();
+
+		System.out.println("OSC " + oscVer);
+		System.out.println("OSS " + ossVer);
+
 		double totalThreadSleepTime = 0;
 		double totalThreadSleepTimesearch = 0;
 		double totalThreadSleepTimedownload = 0;
+
+		String productTitle = "알약M - 파일 청소 및 메신저 파일 정리, 국내 1위 무료 바이러스+스미싱 보안";
+		String xPathProductTitle = "//*[@text='" + productTitle + "']";
 
 		popupCheck();
 
@@ -68,7 +79,7 @@ public class Download_SKT_E2E extends BaseDriver_Download_SKT {
 
 		Thread.sleep(3000);
 		totalThreadSleepTimesearch += 3;
-		driver.findElementByXPath("//*[@text='알약M - 파일 청소 및 메신저 파일 정리, 국내 1위 무료 바이러스+스미싱 보안']").isDisplayed();
+		driver.findElementByXPath(xPathProductTitle).isDisplayed();
 
 		double endTimesearchEnter = System.nanoTime();
 		System.out.println(endTimesearchEnter);
@@ -76,7 +87,7 @@ public class Download_SKT_E2E extends BaseDriver_Download_SKT {
 				(((endTimesearchEnter - startTimesearchEnter) / 1000000000) - totalThreadSleepTimesearch)));
 
 		Thread.sleep(3000);
-		driver.findElementByXPath("//*[@text='알약M - 파일 청소 및 메신저 파일 정리, 국내 1위 무료 바이러스+스미싱 보안']").click(); // 상품명 선택
+		driver.findElementByXPath(xPathProductTitle).click(); // 상품명 선택
 		System.out.println("------goodsDetailenter-------");
 
 		double startTimeCompletein = System.nanoTime();
@@ -84,7 +95,7 @@ public class Download_SKT_E2E extends BaseDriver_Download_SKT {
 
 		Thread.sleep(3000);
 		totalThreadSleepTime += 3;
-		driver.findElementByXPath("//*[@text='알약M - 파일 청소 및 메신저 파일 정리, 국내 1위 무료 바이러스+스미싱 보안']").isDisplayed(); // 상품명 확인
+		driver.findElementByXPath(xPathProductTitle).isDisplayed(); // 상품명 확인
 		System.out.println("------goodsDetailenterComplete-------");
 
 		double endTimeCompletein = System.nanoTime();
@@ -98,9 +109,22 @@ public class Download_SKT_E2E extends BaseDriver_Download_SKT {
 		double startTimeCompletedownload = System.nanoTime();
 		System.out.println(startTimeCompletedownload);
 
-		Thread.sleep(50000);
-		totalThreadSleepTime += 50;
-		driver.findElementByXPath("//*[@text='실행']").isDisplayed(); // 다운로드 => 실행 버튼으로 바뀜 확인
+		int i = 0;
+		while(i < 10000) {
+			try {
+				driver.findElementByXPath("//*[@text='실행']").isDisplayed();
+				break;
+			} catch (Exception e) {
+				Thread.sleep(10);
+				i++;
+			}
+		}
+
+
+
+//		Thread.sleep(50000);
+//		totalThreadSleepTime += 50;
+//		driver.findElementByXPath("//*[@text='실행']").isDisplayed(); // 다운로드 => 실행 버튼으로 바뀜 확인
 
 		double endTimeCompletedownload = System.nanoTime();
 		System.out.println(endTimeCompletedownload);
@@ -112,6 +136,8 @@ public class Download_SKT_E2E extends BaseDriver_Download_SKT {
 		System.out.println(" / " + " CompleteEnter E2E Result / " + CompleteEnterResult + "s");
 		System.out.println(" / " + " Completedownload E2E Result / " + CompletedownloadResult + "s");
 		System.out.println("--------------------------------------------------");
+
+		result = "PASS";
 
 		ResultPrint();
 		SimpleDateFormat sdf = new SimpleDateFormat("YYYY/MM/dd kk:mm");
