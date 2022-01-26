@@ -11,6 +11,7 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
+import lib.Cmd;
 import org.junit.Test;
 
 import com.google.api.client.auth.oauth2.Credential;
@@ -41,6 +42,13 @@ public class iAPv17_SKT_E2E extends BaseDriver_iAPv17_SKT {
 		TCID = "iAPv17_Daily_SKT ";
 		result = "FAIL";
 		size = driver.manage().window().getSize();
+
+		Cmd cmd = new Cmd();
+		String oscVer = cmd.execCommand(cmd.inputCommand("adb shell dumpsys package com.skt.skaf.A000Z00040 | grep -m 1 versionName")).trim();
+		String ossVer = cmd.execCommand(cmd.inputCommand("adb shell dumpsys package com.skt.skaf.OA00018282 | grep -m 1 versionName")).trim();
+
+		System.out.println("OSC " + oscVer);
+		System.out.println("OSS " + ossVer);
 
 		double totalThreadSleepTime = 0;
 		double totalThreadSleepTimeInapp = 0;
@@ -120,6 +128,7 @@ public class iAPv17_SKT_E2E extends BaseDriver_iAPv17_SKT {
 
 		System.out.println("-----ClickPurchaseButton");
 
+/*
 		Thread.sleep(2000);
 		try {
 			if (driver.findElementByXPath("//android.view.View[@text='SK텔레콤 휴대폰결제 이용안내']").isDisplayed())
@@ -128,6 +137,7 @@ public class iAPv17_SKT_E2E extends BaseDriver_iAPv17_SKT {
 			driver.findElementByXPath("//android.view.View[@text='동의']").click();
 		} catch (Exception d) {
 		}
+*/
 
 		Thread.sleep(2500);
 		System.out.println("-----EnterPasswordPage");
@@ -152,6 +162,11 @@ public class iAPv17_SKT_E2E extends BaseDriver_iAPv17_SKT {
 		Thread.sleep(4000);
 		driver.findElementByXPath("//*[@text='확인']").click();
 
+		Thread.sleep(2500);
+		String purchaseId = driver.findElementById("com.onestore.iap.apisample.test1:id/tv_log").getText();
+		System.out.println("PID: " + purchaseId);
+		System.out.println("-----getPurchaseId");
+
 		System.out.println("--------------------------------------------------");
 		System.out.println(" / " + "IAPv17 inappEnterTime E2E Result / " + inappEnterResult + "s");
 		System.out.println(" / " + "IAPv17 CompletePayment E2E Result / " + CompletePayment + "s");
@@ -163,11 +178,6 @@ public class iAPv17_SKT_E2E extends BaseDriver_iAPv17_SKT {
 		Thread.sleep(2500);
 		driver.findElementByXPath("//android.widget.CheckedTextView[@text='consumePurchase()']").click();
 		System.out.println("-----Click_consumePurchase");
-
-		Thread.sleep(2500);
-		String purchaseId = driver.findElementById("com.onestore.iap.apisample.test1:id/tv_log").getText();
-		System.out.println(purchaseId);
-		System.out.println("-----getPurchaseId");
 
 		Thread.sleep(2500);
 		driver.findElementById("com.onestore.iap.apisample.test1:id/et_purchase_id").click();
@@ -274,6 +284,5 @@ public class iAPv17_SKT_E2E extends BaseDriver_iAPv17_SKT {
 	 public static URL getFeedWorksheetsURL(String sheetId) throws Exception {
 	    	return new URL("https://spreadsheets.google.com/feeds/worksheets/" + sheetId + "/private/full");
 	    }
-
 }
 	

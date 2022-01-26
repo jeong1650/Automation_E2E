@@ -28,6 +28,7 @@ import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.util.Date;
 
+import lib.Cmd;
 import org.junit.Test;
 
 public class iAPv17_KT_E2E extends BaseDriver_iAPv17_KT {
@@ -42,6 +43,13 @@ public class iAPv17_KT_E2E extends BaseDriver_iAPv17_KT {
 		TCID = "iAPv17_Daily_KT ";
 		result = "FAIL";
 		size = driver.manage().window().getSize();
+
+		Cmd cmd = new Cmd();
+		String oscVer = cmd.execCommand(cmd.inputCommand("adb shell dumpsys package com.kt.olleh.storefront | grep -m 1 versionName")).trim();
+		String ossVer = cmd.execCommand(cmd.inputCommand("adb shell dumpsys package com.skt.skaf.OA00018282 | grep -m 1 versionName")).trim();
+
+		System.out.println("OSC " + oscVer);
+		System.out.println("OSS " + ossVer);
 
 		double totalThreadSleepTime = 0;
 		double totalThreadSleepTimeInapp = 0;
@@ -120,15 +128,6 @@ public class iAPv17_KT_E2E extends BaseDriver_iAPv17_KT {
 //		driver.findElementByXPath("//*[@resource-id='divPaySubmitDiscountInfo']").click();// Swipe 인식이 되지 않아, resource-id 로 변경
 		System.out.println("-----ClickPurchaseButton");
 
-		Thread.sleep(2000);
-		try {
-			if (driver.findElementByXPath("//*[@text='SK텔레콤 휴대폰결제 이용안내']").isDisplayed())
-				;
-			Thread.sleep(2500);
-			driver.findElementByXPath("//*[@text='동의']").click();
-		} catch (Exception d) {
-		}
-
 		Thread.sleep(2500);
 		System.out.println("-----EnterPasswordPage");
 		Password();
@@ -148,7 +147,11 @@ public class iAPv17_KT_E2E extends BaseDriver_iAPv17_KT {
 		upSwipe(0.70);
 		Thread.sleep(3000);
 		driver.findElementByXPath("//*[@text='확인']").click();
-		
+
+		Thread.sleep(2500);
+		String purchaseId = driver.findElementById("com.onestore.iap.apisample.test1:id/tv_log").getText();
+		System.out.println("PID: " + purchaseId);
+		System.out.println("-----getPurchaseId");
 
 		System.out.println("--------------------------------------------------");
 		System.out.println(" / " + "IAPv17 inappEnterTime E2E Result / " + inappEnterResult + "s");
@@ -161,10 +164,6 @@ public class iAPv17_KT_E2E extends BaseDriver_iAPv17_KT {
 		Thread.sleep(2500);
 		driver.findElementByXPath("//android.widget.CheckedTextView[@text='consumePurchase()']").click();
 		System.out.println("-----Click_consumePurchase");
-
-		Thread.sleep(2500);
-		String purchaseId = driver.findElementById("com.onestore.iap.apisample.test1:id/tv_log").getText();
-		System.out.println("-----getPurchaseId");
 
 		Thread.sleep(2500);
 		driver.findElementById("com.onestore.iap.apisample.test1:id/et_purchase_id").click();
