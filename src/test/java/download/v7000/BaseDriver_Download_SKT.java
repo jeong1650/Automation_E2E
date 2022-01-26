@@ -68,7 +68,6 @@ String productname;
 	
 	public void ResultPrint() throws Exception {
 	   System.out.println("-----------------------------------");
-	   result = "PASS";
 	   System.out.println(" --- " + TCID + result + " ---");   
 	   System.out.println("-----------------------------------");
 	   driver.quit();	

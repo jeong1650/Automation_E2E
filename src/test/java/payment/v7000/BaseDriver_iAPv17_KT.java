@@ -115,28 +115,4 @@ String productname;
 		} catch (Exception e) {
 		}		
 	}
-	
-	public static void main(String[] args) throws IOException { 
-
-		SimpleDateFormat sdf = new SimpleDateFormat("YYYY_MM_dd_kk_mm");
-		Date date = new Date();
-		String time = sdf.format(date);
-		
-		StringBuffer csv = new StringBuffer();
-		csv.append(time + "," + result + "\n");
-/**/
-//		Boolean result = false;
-
-		PrintWriter pw = new PrintWriter(new FileWriter("C:\\PP_KT_CSV\\ktE2E.csv")); 
-
-//		pw.write(time + "," +  result + "\n"); 
-		pw.write(csv.toString());
-		
-		pw.flush(); 
-		pw.close(); 
-
-		System.out.println("close"); 
-		} 
-
-		
 }
