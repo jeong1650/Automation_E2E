@@ -54,7 +54,7 @@ public class Download_SKT_E2E extends BaseDriver_Download_SKT {
 		double totalThreadSleepTimesearch = 0;
 		double totalThreadSleepTimedownload = 0;
 
-		String productTitle = "알약M - 파일 청소 및 메신저 파일 정리, 국내 1위 무료 바이러스+스미싱 보안";
+		String productTitle = "네이버 파파고 - AI 통번역";
 		String xPathProductTitle = "//*[@text='" + productTitle + "']";
 
 		popupCheck();
@@ -67,7 +67,7 @@ public class Download_SKT_E2E extends BaseDriver_Download_SKT {
 		driver.findElementById("com.skt.skaf.A000Z00040:id/searchbar_keyword_edittext").click(); // 검색어 입력
 		
 		Thread.sleep(2000);
-		driver.findElementById("com.skt.skaf.A000Z00040:id/searchbar_keyword_edittext").sendKeys("알약");
+		driver.findElementById("com.skt.skaf.A000Z00040:id/searchbar_keyword_edittext").sendKeys(productTitle);
 		System.out.println("------searchKeywordwrite-------");
 
 		Thread.sleep(2000);
