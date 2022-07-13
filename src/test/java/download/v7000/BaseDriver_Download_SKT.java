@@ -25,7 +25,9 @@ public class BaseDriver_Download_SKT {
 public static AndroidDriver<AndroidElement> driver;
 public static String result = "";
 public static String TCID = "";
+public static String UDID = "R3CMB0PNA8";
 protected Dimension size;
+
 String productname;
 	
 	@Before
@@ -33,7 +35,7 @@ String productname;
 		DesiredCapabilities capabilities = new DesiredCapabilities();
 		capabilities.setCapability("deviceName", "appium");
 		capabilities.setCapability("unicodeKeyboard", true);
-		capabilities.setCapability("udid", "R3CMB0PNA8");
+		capabilities.setCapability("udid", UDID);
 		capabilities.setCapability("appPackage", "com.skt.skaf.A000Z00040");
 		capabilities.setCapability("appActivity", "A000Z00040");
 		capabilities.setCapability("platformVersion", "10");
