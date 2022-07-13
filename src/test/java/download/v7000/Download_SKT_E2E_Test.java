@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import io.appium.java_client.android.AndroidElement;
 import org.junit.Test;
 
 import com.google.api.client.auth.oauth2.Credential;
@@ -30,7 +31,7 @@ import java.net.URL;
 import java.util.Arrays;
 import java.util.List;
 
-public class Download_SKT_E2E extends BaseDriver_Download_SKT {
+public class Download_SKT_E2E_Test extends BaseDriver_Download_SKT {
 
 	/* -----------------------------------------------------------------------------
 	 * @ Editor = Park Cheolmin
@@ -44,14 +45,15 @@ public class Download_SKT_E2E extends BaseDriver_Download_SKT {
 		size = driver.manage().window().getSize();
 
 		Cmd cmd = new Cmd();
-		String oscVer = cmd.execCommand(cmd.inputCommand("adb shell dumpsys package com.skt.skaf.A000Z00040 | grep -m 1 versionName")).trim();
-		String ossVer = cmd.execCommand(cmd.inputCommand("adb shell dumpsys package com.skt.skaf.OA00018282 | grep -m 1 versionName")).trim();
+	//	cmd.inputCommand("adb -s " + UDID + " uninstall com.naver.labs.translator");
+		System.out.println(cmd.execCommand(cmd.inputCommand("adb -s " + UDID + " uninstall com.naver.labs.translator")).trim());
+		String oscVer = cmd.execCommand(cmd.inputCommand("adb -s " + UDID + " shell dumpsys package com.skt.skaf.A000Z00040 | grep -m 1 versionName")).trim();
+		String ossVer = cmd.execCommand(cmd.inputCommand("adb -s " + UDID + " shell dumpsys package com.skt.skaf.OA00018282 | grep -m 1 versionName")).trim();
 
 		System.out.println("OSC " + oscVer);
 		System.out.println("OSS " + ossVer);
 
 		double totalThreadSleepTime = 0;
-		double totalThreadSleepTimesearch = 0;
 		double totalThreadSleepTimedownload = 0;
 
 		String productTitle = "네이버 파파고 - AI 통번역";
@@ -77,42 +79,10 @@ public class Download_SKT_E2E extends BaseDriver_Download_SKT {
 		double startTimesearchEnter = System.nanoTime();
 		System.out.println(startTimesearchEnter);
 
-		Thread.sleep(3000);
-		totalThreadSleepTimesearch += 3;
-		driver.findElementByXPath(xPathProductTitle).isDisplayed();
-
-		double endTimesearchEnter = System.nanoTime();
-		System.out.println(endTimesearchEnter);
-		double searchEnterResult = Double.parseDouble(String.format("%.2f",
-				(((endTimesearchEnter - startTimesearchEnter) / 1000000000) - totalThreadSleepTimesearch)));
-
-		Thread.sleep(3000);
-		driver.findElementByXPath(xPathProductTitle).click(); // 상품명 선택
-		System.out.println("------goodsDetailenter-------");
-
-		double startTimeCompletein = System.nanoTime();
-		System.out.println(startTimeCompletein);
-
-		Thread.sleep(3000);
-		totalThreadSleepTime += 3;
-		driver.findElementByXPath(xPathProductTitle).isDisplayed(); // 상품명 확인
-		System.out.println("------goodsDetailenterComplete-------");
-
-		double endTimeCompletein = System.nanoTime();
-		System.out.println(endTimeCompletein);
-		double CompleteEnterResult = Double.parseDouble(String.format("%.2f",
-				(((endTimeCompletein - startTimeCompletein) / 1000000000) - totalThreadSleepTime)));
-
-		Thread.sleep(3000);
-		driver.findElementById("com.skt.skaf.A000Z00040:id/text").click(); // 다운로드 선택
-
-		double startTimeCompletedownload = System.nanoTime();
-		System.out.println(startTimeCompletedownload);
-
 		int i = 0;
 		while(i < 10000) {
 			try {
-				driver.findElementByXPath("//*[@text='실행']").isDisplayed();
+				driver.findElementById("com.skt.skaf.A000Z00040:id/search_result_item_app_title").isDisplayed();
 				break;
 			} catch (Exception e) {
 				Thread.sleep(10);
@@ -120,11 +90,63 @@ public class Download_SKT_E2E extends BaseDriver_Download_SKT {
 			}
 		}
 
+		double endTimesearchEnter = System.nanoTime();
 
+		System.out.println(endTimesearchEnter);
 
-//		Thread.sleep(50000);
-//		totalThreadSleepTime += 50;
-//		driver.findElementByXPath("//*[@text='실행']").isDisplayed(); // 다운로드 => 실행 버튼으로 바뀜 확인
+		double searchEnterResult = Double.parseDouble(String.format("%.2f",
+				(((endTimesearchEnter - startTimesearchEnter) / 1000000000))));
+
+		Thread.sleep(3000);
+		List<AndroidElement> titleList = driver.findElementsById("com.skt.skaf.A000Z00040:id/search_result_item_app_title");
+
+		for(AndroidElement title : titleList) {
+			if(title.getText().equals(productTitle)) {
+				title.click();
+				break;
+			}
+		}
+
+		System.out.println("------goodsDetailenter-------");
+
+		double startTimeCompletein = System.nanoTime();
+		System.out.println(startTimeCompletein);
+
+		i = 0;
+		while(i < 10000) {
+			try {
+				driver.findElementById("com.skt.skaf.A000Z00040:id/main_info_product_name_text_view").isDisplayed();
+				break;
+			} catch (Exception e) {
+				Thread.sleep(10);
+				i++;
+			}
+		}
+		System.out.println("------goodsDetailenterComplete-------");
+
+		double endTimeCompletein = System.nanoTime();
+		System.out.println(endTimeCompletein);
+		double CompleteEnterResult = Double.parseDouble(String.format("%.2f",
+				(((endTimeCompletein - startTimeCompletein) / 1000000000))));
+
+		Thread.sleep(3000);
+		driver.findElementById("com.skt.skaf.A000Z00040:id/text").click(); // 다운로드 선택
+
+		double startTimeCompletedownload = System.nanoTime();
+		System.out.println(startTimeCompletedownload);
+
+		i = 0;
+		while(i < 10000) {
+			try {
+				driver.findElementByXPath("//*[@text='실행']").isDisplayed();
+				break;
+			} catch (Exception e) {
+				Thread.sleep(10);
+				driver.findElementById("com.skt.skaf.A000Z00040:id/main_info_product_name_text_view");
+				i++;
+			}
+		}
+
 
 		double endTimeCompletedownload = System.nanoTime();
 		System.out.println(endTimeCompletedownload);

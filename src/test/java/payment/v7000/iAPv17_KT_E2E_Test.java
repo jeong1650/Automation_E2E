@@ -2,18 +2,6 @@ package payment.v7000;
 
 import static org.junit.Assert.*;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.PrintWriter;
-import java.net.URL;
-import java.text.SimpleDateFormat;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
-
-import lib.Cmd;
-import org.junit.Test;
-
 import com.google.api.client.auth.oauth2.Credential;
 import com.google.api.client.googleapis.auth.oauth2.GoogleCredential;
 import com.google.api.client.http.HttpTransport;
@@ -30,7 +18,20 @@ import com.google.gdata.data.spreadsheet.SpreadsheetFeed;
 import com.google.gdata.data.spreadsheet.WorksheetEntry;
 import com.google.gdata.data.spreadsheet.WorksheetFeed;
 
-public class iAPv17_LGU_E2E extends BaseDriver_iAPv17_LGU {
+import java.io.File;
+import java.net.URL;
+import java.text.SimpleDateFormat;
+import java.util.Arrays;
+import java.util.List;
+
+import java.io.FileWriter;
+import java.io.PrintWriter;
+import java.util.Date;
+
+import lib.Cmd;
+import org.junit.Test;
+
+public class iAPv17_KT_E2E_Test extends BaseDriver_iAPv17_KT {
 
 	/* -----------------------------------------------------------------------------
 	 * @ Editor = Park Cheolmin
@@ -38,13 +39,13 @@ public class iAPv17_LGU_E2E extends BaseDriver_iAPv17_LGU {
 	 * -----------------------------------------------------------------------------
 	*/
 	@Test
-	public void iAPv17_Daily_LGU() throws Exception {
-		TCID = "iAPv17_Daily_LGU ";
+	public void iAPv17_Daily_KT() throws Exception {
+		TCID = "iAPv17_Daily_KT ";
 		result = "FAIL";
 		size = driver.manage().window().getSize();
 
 		Cmd cmd = new Cmd();
-		String oscVer = cmd.execCommand(cmd.inputCommand("adb shell dumpsys package com.lguplus.appstore | grep -m 1 versionName")).trim();
+		String oscVer = cmd.execCommand(cmd.inputCommand("adb shell dumpsys package com.kt.olleh.storefront | grep -m 1 versionName")).trim();
 		String ossVer = cmd.execCommand(cmd.inputCommand("adb shell dumpsys package com.skt.skaf.OA00018282 | grep -m 1 versionName")).trim();
 
 		System.out.println("OSC " + oscVer);
@@ -71,9 +72,9 @@ public class iAPv17_LGU_E2E extends BaseDriver_iAPv17_LGU {
 		double startTimeInappEnter = System.nanoTime();
 		System.out.println(startTimeInappEnter);
 
-		Thread.sleep(2000);
-		totalThreadSleepTimeInapp += 2;
-		driver.findElementByXPath("//android.view.View[@text='공백일 경우 등록된 상품명']").isDisplayed();
+		Thread.sleep(3000);
+		totalThreadSleepTimeInapp += 3;
+		driver.findElementByXPath("//android.widget.TextView[@text='공백일 경우 등록된 상품명']").isDisplayed();
 		System.out.println("-----EnterPaymentPage");
 
 		double endTimeInappEnter = System.nanoTime();
@@ -90,7 +91,7 @@ public class iAPv17_LGU_E2E extends BaseDriver_iAPv17_LGU {
 			try {
 				driver.findElementByXPath("//android.view.View[@text='쿠폰 적용을 취소하시겠습니까?']").isDisplayed();
 				driver.findElementById("btnLayerPopConfirm").click();
-				System.out.println("-----CancleCouponPopupClose");
+				System.out.println("-----CancelCouponPopupClose");
 			} catch (Exception e) {
 			}
 		} catch (Exception e) {
@@ -100,7 +101,6 @@ public class iAPv17_LGU_E2E extends BaseDriver_iAPv17_LGU {
 			driver.findElementById("btnToggleDcListItem_gamecash").isDisplayed();
 			driver.findElementById("btnToggleDcListItem_gamecash").click();
 			System.out.println("-----CancelGameCash");
-
 			try {
 				driver.findElementById("//android.view.View[@text='할인 적용을 취소하시겠습니까?']").isDisplayed();
 				driver.findElementById("btnLayerPopConfirm").click();
@@ -111,20 +111,21 @@ public class iAPv17_LGU_E2E extends BaseDriver_iAPv17_LGU {
 		} catch (Exception e) {
 		}
 
-		Thread.sleep(1500);
-		upSwipe(0.80);
-		upSwipe(0.80);
-		upSwipe(0.80);
-		
+		Thread.sleep(3000);
+		upSwipe(0.90);
+		upSwipe(0.90);
+		upSwipe(0.90);
+
 		Thread.sleep(2000);
-		driver.findElementByXPath("//android.view.View[@resource-id='btnSelectMainPaymethod_telebillcarrier']").click();
+		driver.findElementByXPath("//*[@resource-id='btnSelectMainPaymethod_telebillcarrier']").click();
 		System.out.println("-----ClickDcbButton");
 
-		driver.findElementByXPath("//android.view.View[@text='위 내용을 확인하였으며 구매진행에 동의합니다.']").click();
+		driver.findElementByXPath("//*[@text='위 내용을 확인하였으며 구매진행에 동의합니다.']").click();
 		System.out.println("-----ClickPurchaseAgreement");
 
-		Thread.sleep(2000);
-		driver.swipe(700, 2050, 700, 2050, -1); // 결제버튼 SM-G925L
+		Thread.sleep(3000);
+		driver.swipe(550, 1930, 550, 1930, 0);  //결제버튼 SM-G970NK 
+//		driver.findElementByXPath("//*[@resource-id='divPaySubmitDiscountInfo']").click();// Swipe 인식이 되지 않아, resource-id 로 변경
 		System.out.println("-----ClickPurchaseButton");
 
 		Thread.sleep(2500);
@@ -144,7 +145,6 @@ public class iAPv17_LGU_E2E extends BaseDriver_iAPv17_LGU {
 
 		Thread.sleep(3000);
 		upSwipe(0.70);
-		
 		Thread.sleep(3000);
 		driver.findElementByXPath("//*[@text='확인']").click();
 
@@ -171,11 +171,14 @@ public class iAPv17_LGU_E2E extends BaseDriver_iAPv17_LGU {
 		driver.findElementById("com.onestore.iap.apisample.test1:id/et_purchase_id").sendKeys(purchaseId);
 		System.out.println("-----putPurchaseId");
 
-		Thread.sleep(2500);
+		Thread.sleep(7000);
 		driver.findElementById("com.onestore.iap.apisample.test1:id/btn_api_call").click();
 		System.out.println("-----CallConsumeAPI");
+//   driver.findElementByXPath("//android.widget.Button[@text='호출']").isDisplayed();
+//   System.out.println("findButton");
+//   driver.findElementByXPath("//android.widget.Button[@text='호출']").click();
 
-		Thread.sleep(2500);
+		Thread.sleep(3000);
 		assertEquals("0 : 성공", driver.findElementById("com.onestore.iap.apisample.test1:id/tv_log").getText());
 		System.out.println("-----SuccessConsume");
 
@@ -190,7 +193,7 @@ public class iAPv17_LGU_E2E extends BaseDriver_iAPv17_LGU {
 		csv.append(time + "," + inappEnterResult + "," + CompletePayment + "\n");
 
 		try {
-			PrintWriter pw = new PrintWriter(new FileWriter("C:\\PP_LGU_CSV\\LGU_v17.csv", true));
+			PrintWriter pw = new PrintWriter(new FileWriter("C:\\PP_KT_CSV\\KT_v17.csv", true));
 
 			pw.write(csv.toString());
 
@@ -200,7 +203,7 @@ public class iAPv17_LGU_E2E extends BaseDriver_iAPv17_LGU {
 
 		}
 		
-		String sheetId = "1dou3BOX9bmTQ6XjtspX1-7V-tbmxFJ--wOrltiyW1bE"; // 시트 Key
+		String sheetId = "1VXQrjL77S21Ahckv2rZYrui8ScDyoZPGDSAx4p70e_w"; // 시트 Key
         String sheetName = new SimpleDateFormat("yyyy-MM").format(System.currentTimeMillis()); // 년-월 단위 분리를 위한 시트명 생성
         String keyFileName = "norse-bond-259605-eb1188cf3bcf.p12";
         String id = "test2-165@norse-bond-259605.iam.gserviceaccount.com";
@@ -273,4 +276,3 @@ public class iAPv17_LGU_E2E extends BaseDriver_iAPv17_LGU {
 	    }
 
 }
-	

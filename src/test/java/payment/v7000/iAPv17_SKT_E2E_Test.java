@@ -30,7 +30,7 @@ import com.google.gdata.data.spreadsheet.SpreadsheetFeed;
 import com.google.gdata.data.spreadsheet.WorksheetEntry;
 import com.google.gdata.data.spreadsheet.WorksheetFeed;
 
-public class iAPv17_SKT_E2E extends BaseDriver_iAPv17_SKT {
+public class iAPv17_SKT_E2E_Test extends BaseDriver_iAPv17_SKT {
 
 	/* -----------------------------------------------------------------------------
 	 * @ Editor = Park Cheolmin
