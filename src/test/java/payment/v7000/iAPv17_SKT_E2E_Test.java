@@ -44,8 +44,8 @@ public class iAPv17_SKT_E2E_Test extends BaseDriver_iAPv17_SKT {
 		size = driver.manage().window().getSize();
 
 		Cmd cmd = new Cmd();
-		String oscVer = cmd.execCommand(cmd.inputCommand("adb shell dumpsys package com.skt.skaf.A000Z00040 | grep -m 1 versionName")).trim();
-		String ossVer = cmd.execCommand(cmd.inputCommand("adb shell dumpsys package com.skt.skaf.OA00018282 | grep -m 1 versionName")).trim();
+		String oscVer = cmd.execCommand(cmd.inputCommand("adb -s " + UDID + " shell dumpsys package com.skt.skaf.A000Z00040 | grep -m 1 versionName")).trim();
+		String ossVer = cmd.execCommand(cmd.inputCommand("adb -s " + UDID + " shell dumpsys package com.skt.skaf.OA00018282 | grep -m 1 versionName")).trim();
 
 		System.out.println("OSC " + oscVer);
 		System.out.println("OSS " + ossVer);

@@ -23,6 +23,7 @@ public class BaseDriver_iAPv17_LGU {
 public static AndroidDriver<AndroidElement> driver;
 public static String result = "";
 public static String TCID = "";
+public static String UDID = "212233cc40037ece";
 protected Dimension size;
 String productname;
 	
@@ -31,7 +32,7 @@ String productname;
 		DesiredCapabilities capabilities = new DesiredCapabilities();
 		capabilities.setCapability("deviceName", "appium");
 		capabilities.setCapability("unicodeKeyboard", true);
-		capabilities.setCapability("udid", "212233cc40037ece");
+		capabilities.setCapability("udid", UDID);
 		capabilities.setCapability("appPackage", "com.onestore.iap.apisample.test1");
 		capabilities.setCapability("appActivity", "com.onestore.iap.apisample.ApiCallActivity");
 		capabilities.setCapability("platformVersion", "9");
