@@ -2,33 +2,13 @@ package payment.v7000;
 
 import static org.junit.Assert.*;
 
-import java.io.File;
 import java.io.FileWriter;
 import java.io.PrintWriter;
-import java.net.URL;
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
 import java.util.Date;
-import java.util.List;
 
 import lib.Cmd;
 import org.junit.Test;
-
-import com.google.api.client.auth.oauth2.Credential;
-import com.google.api.client.googleapis.auth.oauth2.GoogleCredential;
-import com.google.api.client.http.HttpTransport;
-import com.google.api.client.http.javanet.NetHttpTransport;
-import com.google.api.client.json.JsonFactory;
-import com.google.api.client.json.jackson2.JacksonFactory;
-import com.google.gdata.client.spreadsheet.SpreadsheetService;
-import com.google.gdata.data.PlainTextConstruct;
-import com.google.gdata.data.spreadsheet.CellEntry;
-import com.google.gdata.data.spreadsheet.CellFeed;
-import com.google.gdata.data.spreadsheet.ListEntry;
-import com.google.gdata.data.spreadsheet.ListFeed;
-import com.google.gdata.data.spreadsheet.SpreadsheetFeed;
-import com.google.gdata.data.spreadsheet.WorksheetEntry;
-import com.google.gdata.data.spreadsheet.WorksheetFeed;
 
 public class iAPv17_SKT_E2E_Test extends BaseDriver_iAPv17_SKT {
 
@@ -213,76 +193,6 @@ public class iAPv17_SKT_E2E_Test extends BaseDriver_iAPv17_SKT {
 		} catch (Exception e) {
 
 		}
-		String sheetId = "1zMbl0IpG1J-fLtjK3N6RCkbK5Te-o1fIfAwlSvoFMeI"; // 시트 Key
-        String sheetName = new SimpleDateFormat("yyyy-MM").format(System.currentTimeMillis()); // 년-월 단위 분리를 위한 시트명 생성
-        String keyFileName = "norse-bond-259605-eb1188cf3bcf.p12";
-        String id = "test2-165@norse-bond-259605.iam.gserviceaccount.com";
-        
-        ClassLoader classloader = Thread.currentThread().getContextClassLoader();
-        URL url = classloader.getResource(keyFileName); // p12 Key
-        final File file = new File(url.getFile());
-        
-        // 이하 인증부 계정 외 수정 금지
-        HttpTransport HTTP_TRANSPORT = new NetHttpTransport();
-        JsonFactory JSON_FACTORY = new JacksonFactory();
-
-        Credential credential = new GoogleCredential.Builder().setTransport(HTTP_TRANSPORT)
-                .setJsonFactory(JSON_FACTORY)
-                .setServiceAccountId(id) // 생성 계정
-                .setTokenServerEncodedUrl("https://accounts.google.com/o/oauth2/token")
-                .setServiceAccountScopes(Arrays.asList("https://www.googleapis.com/auth/drive", "https://spreadsheets.google.com/feeds", "https://docs.google.com/feeds"))
-                .setServiceAccountPrivateKeyFromP12File(file).build();
-
-        SpreadsheetService service = new SpreadsheetService("MySpreadsheetIntegration-v1");
-        service.setOAuth2Credentials(credential); 
-        service.getFeed(new URL("https://spreadsheets.google.com/feeds/spreadsheets/private/full"), SpreadsheetFeed.class);
-        // 인증부 종료
-        
-        // 문서 접근
-        WorksheetEntry worksheet = null;
-        
-		WorksheetFeed worksheetFeed = service.getFeed(getFeedWorksheetsURL(sheetId), WorksheetFeed.class);
-		List<WorksheetEntry> worksheets = worksheetFeed.getEntries();
-
-		for(WorksheetEntry ws : worksheets) { // 해당 시트 탐색
-			if(ws.getTitle().getPlainText().equals(sheetName)) {
-				worksheet = ws;
-				break;
-			}
-		}
-		
-		if (worksheet == null) { // 해당 시트 없을 시 시트 생성
-			worksheet = new WorksheetEntry();
-			worksheet.setTitle(new PlainTextConstruct(sheetName));
-			worksheet.setColCount(10);
-			worksheet.setRowCount(1000);
-			worksheet = service.insert(getFeedWorksheetsURL(sheetId), worksheet);
-			URL cellFeedUrl = worksheet.getCellFeedUrl();
-			CellFeed cellFeed = service.getFeed(cellFeedUrl, CellFeed.class);
-			CellEntry cellEntry = new CellEntry(1, 1, "Time");
-			cellFeed.insert(cellEntry);
-			cellEntry = new CellEntry(1, 2, "InappEnterResult");
-			cellFeed.insert(cellEntry);
-			cellEntry = new CellEntry(1, 3, "CompletePayment");
-			cellFeed.insert(cellEntry);
-		}		
-		csv.append(time + "," + inappEnterResult + "," + CompletePayment + "\n");
-		// Fetch the list feed of the worksheet.
-		URL listFeedUrl = worksheet.getListFeedUrl();
-		service.getFeed(listFeedUrl, ListFeed.class);
-        
-        ListEntry row = new ListEntry();
-        row.getCustomElements().setValueLocal("Time", time);
-        row.getCustomElements().setValueLocal("InappEnterResult", String.format("%.2f",inappEnterResult));
-        row.getCustomElements().setValueLocal("CompletePayment", String.format("%.2f",CompletePayment));
-        
-        service.insert(listFeedUrl, row);
-		
-		System.out.println("close");
 	}
-	
-	 public static URL getFeedWorksheetsURL(String sheetId) throws Exception {
-	    	return new URL("https://spreadsheets.google.com/feeds/worksheets/" + sheetId + "/private/full");
-	    }
 }
 	
