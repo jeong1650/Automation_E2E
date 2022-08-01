@@ -92,7 +92,7 @@ String productname;
 			SimpleDateFormat sdf = new SimpleDateFormat("YYYY_MM_dd_kk_mm");
 			Date date = new Date();
 			String FileName = sdf.format(date);
-			try { String filePath = "C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\Download_SKT_E2E\\";
+			try { String filePath = "C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\Download_SKT_E2E\\failSC\\";
 				org.apache.commons.io.FileUtils.copyFile(scrFile, new File(filePath + FileName +".png"));
 				File pngOriginal = new File(filePath + FileName +".png");
 				File pngResized = new File(filePath + FileName +".png");
