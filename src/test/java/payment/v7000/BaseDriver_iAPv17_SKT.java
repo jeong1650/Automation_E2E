@@ -90,7 +90,7 @@ String productname;
 			Date date = new Date();
 			String FileName = sdf.format(date);
 			try {
-				String filePath = "C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\iAPv17_SKT_E2E\\";
+				String filePath = "C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\iAPv17_SKT_E2E\\failSC\\";
 				FileUtils.copyFile(scrFile, new File(filePath + FileName +".png"));
 				File pngOriginal = new File(filePath + FileName +".png");
 				File pngResized = new File(filePath + FileName +".png");
