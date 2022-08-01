@@ -25,7 +25,7 @@ public class BaseDriver_Download_SKT {
 public static AndroidDriver<AndroidElement> driver;
 public static String result = "";
 public static String TCID = "";
-public static String UDID = "R39N401DM2";
+public static String UDID = "R3CMB0PNA8";
 protected Dimension size;
 
 String productname;
