@@ -21,7 +21,7 @@ public class Download_SKT_E2E_Test extends BaseDriver_Download_SKT {
 	 * -----------------------------------------------------------------------------
 	 */	
 	@Test
-	public void Download_Daily_SKT() throws Exception {
+	public void Download_Daily_SKT_Test() throws Exception {
 		TCID = "Download_E2E_SKT ";
 		result = "FAIL";
 		size = driver.manage().window().getSize();
