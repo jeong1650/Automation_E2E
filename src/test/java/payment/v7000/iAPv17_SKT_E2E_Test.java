@@ -108,17 +108,6 @@ public class iAPv17_SKT_E2E_Test extends BaseDriver_iAPv17_SKT {
 
 		System.out.println("-----ClickPurchaseButton");
 
-/*
-		Thread.sleep(2000);
-		try {
-			if (driver.findElementByXPath("//android.view.View[@text='SK텔레콤 휴대폰결제 이용안내']").isDisplayed())
-				;
-			Thread.sleep(2500);
-			driver.findElementByXPath("//android.view.View[@text='동의']").click();
-		} catch (Exception d) {
-		}
-*/
-
 		Thread.sleep(2500);
 		System.out.println("-----EnterPasswordPage");
 		Password();

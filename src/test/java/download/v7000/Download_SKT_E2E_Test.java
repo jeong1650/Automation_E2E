@@ -27,16 +27,12 @@ public class Download_SKT_E2E_Test extends BaseDriver_Download_SKT {
 		size = driver.manage().window().getSize();
 
 		Cmd cmd = new Cmd();
-		//	cmd.inputCommand("adb -s " + UDID + " uninstall com.naver.labs.translator");
 		System.out.println(cmd.execCommand(cmd.inputCommand("adb -s " + UDID + " uninstall com.naver.labs.translator")).trim());
 		String oscVer = cmd.execCommand(cmd.inputCommand("adb -s " + UDID + " shell dumpsys package com.skt.skaf.A000Z00040 | grep -m 1 versionName")).trim();
 		String ossVer = cmd.execCommand(cmd.inputCommand("adb -s " + UDID + " shell dumpsys package com.skt.skaf.OA00018282 | grep -m 1 versionName")).trim();
 
 		System.out.println("OSC " + oscVer);
 		System.out.println("OSS " + ossVer);
-
-		double totalThreadSleepTime = 0;
-		double totalThreadSleepTimedownload = 0;
 
 		String productTitle = "네이버 파파고 - AI 통번역";
 		String xPathProductTitle = "//*[@text='" + productTitle + "']";
@@ -133,7 +129,7 @@ public class Download_SKT_E2E_Test extends BaseDriver_Download_SKT {
 		double endTimeCompletedownload = System.nanoTime();
 		System.out.println(endTimeCompletedownload);
 		double CompletedownloadResult = Double.parseDouble(String.format("%.2f",
-				(((endTimeCompletedownload - startTimeCompletedownload) / 1000000000) - totalThreadSleepTimedownload)));
+				((endTimeCompletedownload - startTimeCompletedownload) / 1000000000)));
 
 		System.out.println("--------------------------------------------------");
 		System.out.println(" / " + " searchEnter E2E Result / " + searchEnterResult + "s");
