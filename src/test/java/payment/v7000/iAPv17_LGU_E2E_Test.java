@@ -53,7 +53,7 @@ public class iAPv17_LGU_E2E_Test extends BaseDriver_iAPv17_LGU {
 
 		Thread.sleep(2000);
 		totalThreadSleepTimeInapp += 2;
-		driver.findElementByXPath("//android.view.View[@text='공백일 경우 등록된 상품명']").isDisplayed();
+		driver.findElementByXPath("//android.widget.TextView[@text='공백일 경우 등록된 상품명']").isDisplayed();
 		System.out.println("-----EnterPaymentPage");
 
 		double endTimeInappEnter = System.nanoTime();
