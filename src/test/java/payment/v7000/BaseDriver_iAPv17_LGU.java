@@ -23,7 +23,7 @@ public class BaseDriver_iAPv17_LGU {
 public static AndroidDriver<AndroidElement> driver;
 public static String result = "";
 public static String TCID = "";
-public static String UDID = "212233cc40037ece";
+public static String UDID = "ce07171753f2ccf90c7e";
 protected Dimension size;
 String productname;
 	
@@ -35,7 +35,7 @@ String productname;
 		capabilities.setCapability("udid", UDID);
 		capabilities.setCapability("appPackage", "com.onestore.iap.apisample.test1");
 		capabilities.setCapability("appActivity", "com.onestore.iap.apisample.ApiCallActivity");
-		capabilities.setCapability("platformVersion", "9");
+		capabilities.setCapability("platformVersion", "7.1.1");
 		driver = new AndroidDriver<>(new URL("http://127.0.0.1:6723/wd/hub"), capabilities);
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 	}	
