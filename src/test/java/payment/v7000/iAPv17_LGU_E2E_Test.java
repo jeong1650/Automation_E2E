@@ -116,7 +116,7 @@ public class iAPv17_LGU_E2E_Test extends BaseDriver_iAPv17_LGU {
 
 		Thread.sleep(2000);
 		totalThreadSleepTime += 2;
-		driver.findElementByXPath("//android.view.View[@text='결제 완료']").isDisplayed();
+		driver.findElementByXPath("//*[@text='결제 완료']").isDisplayed();
 		double endTimeCompletePayment = System.nanoTime();
 		System.out.println(endTimeCompletePayment);
 		double CompletePayment = Double.parseDouble(String.format("%.2f",
