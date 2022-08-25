@@ -107,10 +107,17 @@ public class iAPv17_KT_E2E_Test extends BaseDriver_iAPv17_KT {
 		driver.swipe(550, 1930, 550, 1930, 0);  //결제버튼 SM-G970NK 
 //		driver.findElementByXPath("//*[@resource-id='divPaySubmitDiscountInfo']").click();// Swipe 인식이 되지 않아, resource-id 로 변경
 		System.out.println("-----ClickPurchaseButton");
+		try{
+			Thread.sleep(2500);
+			System.out.println("-----EnterPasswordPage");
+			Password();
+		}catch (Exception e){
+			driver.swipe(550, 1930, 550, 1930, 0);
+			Thread.sleep(2500);
+			System.out.println("-----EnterPasswordPage");
+			Password();
+		}
 
-		Thread.sleep(2500);
-		System.out.println("-----EnterPasswordPage");
-		Password();
 		System.out.println("-----PassPassword");
 		double startTimeCompletePayment = System.nanoTime();
 		System.out.println(startTimeCompletePayment);
