@@ -31,7 +31,7 @@ public static AndroidDriver<AndroidElement> driver;
 public static String result = "";
 //public static double inappEnterResult;
 public static String TCID = "";
-public static String UDID = "24c1c189431c7ece";
+public static String UDID = "R39KA05RX9";
 protected Dimension size;
 String productname;
 	
@@ -43,7 +43,7 @@ String productname;
 		capabilities.setCapability("udid", UDID);
 		capabilities.setCapability("appPackage", "com.onestore.iap.apisample.test1");
 		capabilities.setCapability("appActivity", "com.onestore.iap.apisample.ApiCallActivity");
-		capabilities.setCapability("platformVersion", "8.1.0");
+		capabilities.setCapability("platformVersion", "9.0.0");
 		driver = new AndroidDriver<>(new URL("http://127.0.0.1:5723/wd/hub"), capabilities);
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		}	
@@ -56,7 +56,7 @@ String productname;
 	   }catch (Exception e){
 		   Runtime.getRuntime().exec("adb shell am force-stop com.skt.skaf.OA00018282");
 	   }
-	   
+
 	   driver.findElementByXPath("//android.widget.Button[@text='0']").click();
 		   
 	   Thread.sleep(2000);

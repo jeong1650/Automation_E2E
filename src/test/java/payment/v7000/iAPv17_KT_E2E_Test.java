@@ -104,7 +104,7 @@ public class iAPv17_KT_E2E_Test extends BaseDriver_iAPv17_KT {
 		System.out.println("-----ClickPurchaseAgreement");
 
 		Thread.sleep(3000);
-		driver.swipe(558, 1989, 558, 1989, 0);  //결제버튼 SM-N960NK
+		driver.swipe(550, 1930, 550, 1930, 0);  //결제버튼 SM-G70NK
 //		driver.findElementByXPath("//*[@resource-id='divPaySubmitDiscountInfo']").click();// Swipe 인식이 되지 않아, resource-id 로 변경
 		System.out.println("-----ClickPurchaseButton");
 		try{
@@ -112,7 +112,7 @@ public class iAPv17_KT_E2E_Test extends BaseDriver_iAPv17_KT {
 			System.out.println("-----EnterPasswordPage");
 			Password();
 		}catch (Exception e){
-			driver.swipe(558, 1989, 558, 1989, 0);
+			driver.swipe(550, 1930, 550, 1930, 0);
 			Thread.sleep(2500);
 			System.out.println("-----EnterPasswordPage");
 			Password();
