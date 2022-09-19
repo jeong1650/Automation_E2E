@@ -6,6 +6,7 @@ import java.io.File;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 
 import javax.imageio.ImageIO;
@@ -49,9 +50,13 @@ String productname;
 
 	public void Password() throws Exception {
 	   Thread.sleep(2000);
-	   driver.findElementByXPath("//android.widget.Button[@text='0']").click();
-		   
-	   Thread.sleep(2000);
+	   try{
+		   driver.findElementByXPath("//android.widget.Button[@text='0']").click();
+		   Thread.sleep(2000);
+	   }catch (Exception e){
+		   Runtime.getRuntime().exec("adb shell am force-stop com.skt.skaf.OA00018282");
+	   }
+	   
 	   driver.findElementByXPath("//android.widget.Button[@text='0']").click();
 		   
 	   Thread.sleep(2000);
