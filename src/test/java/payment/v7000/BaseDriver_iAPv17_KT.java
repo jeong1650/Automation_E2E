@@ -50,12 +50,9 @@ String productname;
 
 	public void Password() throws Exception {
 	   Thread.sleep(2000);
-	   try{
 		   driver.findElementByXPath("//android.widget.Button[@text='0']").click();
 		   Thread.sleep(2000);
-	   }catch (Exception e){
-		   Runtime.getRuntime().exec("adb shell am force-stop com.skt.skaf.OA00018282");
-	   }
+
 
 	   driver.findElementByXPath("//android.widget.Button[@text='0']").click();
 		   
@@ -106,6 +103,12 @@ String productname;
 		System.out.println("        IAPv17_KTResult : " + result);
 		System.out.println("                 END                 ");
 		System.out.println("======================================");
+		try {
+			Runtime.getRuntime().exec("adb shell am force-stop com.skt.skaf.OA00018282");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		driver.quit();		
 	}
 
