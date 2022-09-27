@@ -93,6 +93,13 @@ String productname;
 		System.out.println("        IAPv17_LGUResult : " + result);
 		System.out.println("                 END                 ");
 		System.out.println("======================================");
+
+		try {
+			Runtime.getRuntime().exec("adb shell am force-stop com.skt.skaf.OA00018282");
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		driver.quit();		
 	}
 
