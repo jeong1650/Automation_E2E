@@ -31,7 +31,7 @@ public static AndroidDriver<AndroidElement> driver;
 public static String result = "";
 //public static double inappEnterResult;
 public static String TCID = "";
-public static String UDID = "R39KA05RX9";
+public static String UDID = "R39KB0EBRC";
 protected Dimension size;
 String productname;
 	
@@ -97,7 +97,7 @@ String productname;
 				resizeImage(pngOriginal, pngResized, 360, 777, "png");
 			} catch (Exception e) {
 				System.out.println(e.toString());
-			}	
+			}
 		}
 		System.out.println("======================================");
 		System.out.println("        IAPv17_KTResult : " + result);

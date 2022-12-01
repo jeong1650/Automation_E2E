@@ -54,7 +54,7 @@ public class iAPv17_KT_E2E_Test extends BaseDriver_iAPv17_KT {
 
 		Thread.sleep(3000);
 		totalThreadSleepTimeInapp += 3;
-		driver.findElementByXPath("//android.widget.TextView[@text='공백일 경우 등록된 상품명']").isDisplayed();
+		driver.findElementByXPath("//*[@text='공백일 경우 등록된 상품명']").isDisplayed();
 		System.out.println("-----EnterPaymentPage");
 
 		double endTimeInappEnter = System.nanoTime();
@@ -104,7 +104,7 @@ public class iAPv17_KT_E2E_Test extends BaseDriver_iAPv17_KT {
 		System.out.println("-----ClickPurchaseAgreement");
 
 		Thread.sleep(3000);
-		driver.swipe(550, 1930, 550, 1930, 0);  //결제버튼 SM-G70NK
+		driver.swipe(550, 2050, 550, 2050, 0);  //결제버튼 SM-G73NK
 //		driver.findElementByXPath("//*[@resource-id='divPaySubmitDiscountInfo']").click();// Swipe 인식이 되지 않아, resource-id 로 변경
 		System.out.println("-----ClickPurchaseButton");
 		try{
