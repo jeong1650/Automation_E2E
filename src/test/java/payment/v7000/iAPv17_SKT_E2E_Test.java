@@ -6,6 +6,7 @@ import java.io.FileWriter;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.concurrent.ExecutionException;
 
 import lib.Cmd;
 import org.junit.Test;
@@ -13,7 +14,7 @@ import org.junit.Test;
 public class iAPv17_SKT_E2E_Test extends BaseDriver_iAPv17_SKT {
 
 	/* -----------------------------------------------------------------------------
-	 * @ Editor = Park Cheolmin
+	 * @ Editor = Jeong Inho
 	 * @ TCID = iAPv17_Daily_SKT
 	 * -----------------------------------------------------------------------------
 	*/
@@ -62,55 +63,39 @@ public class iAPv17_SKT_E2E_Test extends BaseDriver_iAPv17_SKT {
 		System.out.println(endTimeInappEnter);
 		double inappEnterResult = Double.parseDouble(String.format("%.2f",
 				(((endTimeInappEnter - startTimeInappEnter) / 1000000000) - totalThreadSleepTimeInapp)));
-
 		Thread.sleep(1500);
-		try {
-			driver.findElementById("btnChangeCoupon").isDisplayed();
-			driver.findElementById("btnToggleDcListItem_tcoupon").click();
-			System.out.println("-----CancelCoupon");
-
-			try {
-				driver.findElementByXPath("//android.view.View[@text='쿠폰 적용을 취소하시겠습니까?']").isDisplayed();
-				driver.findElementById("btnLayerPopConfirm").click();
-				System.out.println("-----CancleCouponPopupClose");
-			} catch (Exception e) {
-			}
-		} catch (Exception e) {
-		}
 
 		try {
-			driver.findElementById("btnToggleDcListItem_gamecash").isDisplayed();
-			driver.findElementById("btnToggleDcListItem_gamecash").click();
-			System.out.println("-----CancleGameCash");
-
-			try {
-				driver.findElementById("//android.view.View[@text='할인 적용을 취소하시겠습니까?']").isDisplayed();
-				driver.findElementById("btnLayerPopConfirm").click();
-				System.out.println("-----CancleGameCashPopupClose");
-			} catch (Exception e) {
-				driver.findElementById("btnToggleDcListItem_gamecash").click();
-			}
+		   driver.findElementByXPath("//*[@content-desc='혜택 조회']").isDisplayed();
+		   System.out.println("-----No Coupon");
 		} catch (Exception e) {
+			driver.findElementByXPath("//*[@text='혜택']").click();
+			Thread.sleep(1500);
+			driver.findElementByXPath("//*[@text='포인트 삭제']").click();
+			Thread.sleep(1500);
+			driver.findElementByXPath("//android.widget.TextView[@text='할인 적용을 취소하시겠습니까?']").isDisplayed();
+			driver.findElementByXPath("//*[@text='확인']").click();
+			Thread.sleep(1500);
+			driver.findElementByXPath("//*[@text='이전페이지']").click();
+			Thread.sleep(1500);
+			System.out.println("-----Coupon Cancel");
 		}
 
-		Thread.sleep(1500);
-		upSwipe(0.90);
-
-		Thread.sleep(2000);
-		driver.findElementByXPath("//android.view.View[@resource-id='btnSelectMainPaymethod_telebillcarrier']").click();
-		System.out.println("-----ClickDcbButton");
-
-		driver.findElementByXPath("//*[@text='위 내용을 확인하였으며 구매진행에 동의합니다.']").click();
-		System.out.println("-----ClickPurchaseAgreement");
-
-		Thread.sleep(2000);
-		driver.swipe(651, 2827, 651, 2827, -1); // 결제버튼 SM-G986N / Galaxy S20 Plus
-
+		driver.swipe(701, 2852, 701, 2852, -1); // 결제버튼 SM-G986N / Galaxy S20 Plus
 		System.out.println("-----ClickPurchaseButton");
-
 		Thread.sleep(2500);
+
+		try{
+			driver.findElementByXPath("//*[@text='원스토어 통신과금서비스 이용약관에 동의하십니까?']").isDisplayed();
+			driver.findElementByXPath("//*[@text='동의']").click();
+			Thread.sleep(1500);
+		}catch (Exception e){
+			System.out.println("-----AgreeState");
+		}
+
 		System.out.println("-----EnterPasswordPage");
 		Password();
+
 		System.out.println("-----PassPassword");
 		double startTimeCompletePayment = System.nanoTime();
 		System.out.println(startTimeCompletePayment);
@@ -122,12 +107,12 @@ public class iAPv17_SKT_E2E_Test extends BaseDriver_iAPv17_SKT {
 		System.out.println(endTimeCompletePayment);
 		double CompletePayment = Double.parseDouble(String.format("%.2f",
 				(((endTimeCompletePayment - startTimeCompletePayment) / 1000000000) - totalThreadSleepTime)));
-		
+
 		result = "PASS";
-		
+
 		Thread.sleep(4000);
 		upSwipe(0.70);
-		
+
 		Thread.sleep(4000);
 		driver.findElementByXPath("//*[@text='확인']").click();
 

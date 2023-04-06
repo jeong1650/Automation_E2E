@@ -14,8 +14,8 @@ import org.junit.Test;
 public class iAPv17_KT_E2E_Test extends BaseDriver_iAPv17_KT {
 
 	/* -----------------------------------------------------------------------------
-	 * @ Editor = Park Cheolmin
-	 * @ TCID = iAPv17_Daily_SKT
+	 * @ Editor = Jeong inho
+	 * @ TCID = iAPv17_Daily_KT
 	 * -----------------------------------------------------------------------------
 	*/
 	@Test
@@ -64,49 +64,39 @@ public class iAPv17_KT_E2E_Test extends BaseDriver_iAPv17_KT {
 
 		Thread.sleep(1500);
 		try {
-			driver.findElementById("btnChangeCoupon").isDisplayed();
-			driver.findElementById("btnToggleDcListItem_tcoupon").click();
-			System.out.println("-----CancelCoupon");
-
-			try {
-				driver.findElementByXPath("//android.view.View[@text='쿠폰 적용을 취소하시겠습니까?']").isDisplayed();
-				driver.findElementById("btnLayerPopConfirm").click();
-				System.out.println("-----CancelCouponPopupClose");
-			} catch (Exception e) {
+			try{
+				driver.findElementByXPath("//*[@content-desc='혜택 조회']").isDisplayed();
+				System.out.println("-----No Coupon");
+			}catch (Exception e){
+				driver.findElementByXPath("//*[@text='혜택 조회']").isDisplayed();
+				System.out.println("-----No Coupon");
 			}
+
 		} catch (Exception e) {
+			driver.findElementByXPath("//*[@text='혜택']").click();
+			Thread.sleep(1500);
+			driver.findElementByXPath("//*[@text='포인트 삭제']").click();
+			Thread.sleep(1500);
+			driver.findElementByXPath("//android.widget.TextView[@text='할인 적용을 취소하시겠습니까?']").isDisplayed();
+			driver.findElementByXPath("//*[@text='확인']").click();
+			Thread.sleep(1500);
+			driver.findElementByXPath("//*[@text='이전페이지']").click();
+			Thread.sleep(1500);
+			System.out.println("-----Coupon Cancel");
 		}
 
-		try {
-			driver.findElementById("btnToggleDcListItem_gamecash").isDisplayed();
-			driver.findElementById("btnToggleDcListItem_gamecash").click();
-			System.out.println("-----CancelGameCash");
-			try {
-				driver.findElementById("//android.view.View[@text='할인 적용을 취소하시겠습니까?']").isDisplayed();
-				driver.findElementById("btnLayerPopConfirm").click();
-				System.out.println("-----CancelGameCashPopupClose");
-			} catch (Exception e) {
-				driver.findElementById("btnToggleDcListItem_gamecash").click();
-			}
-		} catch (Exception e) {
-		}
-
-		Thread.sleep(3000);
-		upSwipe(0.90);
-		upSwipe(0.90);
-		upSwipe(0.90);
-
-		Thread.sleep(2000);
-		driver.findElementByXPath("//*[@resource-id='btnSelectMainPaymethod_telebillcarrier']").click();
-		System.out.println("-----ClickDcbButton");
-
-		driver.findElementByXPath("//*[@text='위 내용을 확인하였으며 구매진행에 동의합니다.']").click();
-		System.out.println("-----ClickPurchaseAgreement");
-
-		Thread.sleep(3000);
-		driver.swipe(550, 2050, 550, 2050, 0);  //결제버튼 SM-G73NK
+		driver.swipe(555, 2035, 555, 2035, 0);  //결제버튼 SM-G73NK
 //		driver.findElementByXPath("//*[@resource-id='divPaySubmitDiscountInfo']").click();// Swipe 인식이 되지 않아, resource-id 로 변경
 		System.out.println("-----ClickPurchaseButton");
+
+		try{
+			driver.findElementByXPath("//*[@text='원스토어 통신과금서비스 이용약관에 동의하십니까?']").isDisplayed();
+			driver.findElementByXPath("//*[@text='동의']").click();
+			Thread.sleep(1500);
+		}catch (Exception e){
+			System.out.println("-----AgreeState");
+		}
+
 		try{
 			Thread.sleep(2500);
 			System.out.println("-----EnterPasswordPage");
