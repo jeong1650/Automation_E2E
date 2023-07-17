@@ -31,7 +31,7 @@ public static AndroidDriver<AndroidElement> driver;
 public static String result = "";
 //public static double inappEnterResult;
 public static String TCID = "";
-public static String UDID = "R39KB0EBRC";
+public static String UDID = "R3CM907T72A";
 protected Dimension size;
 String productname;
 	

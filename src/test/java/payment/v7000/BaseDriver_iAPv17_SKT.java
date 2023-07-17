@@ -27,7 +27,7 @@ public static AndroidDriver<AndroidElement> driver;
 public static String result = "";
 //public static double inappEnterResult;
 public static String TCID = "";
-public static String UDID = "R3CMB0PNA8";
+public static String UDID = "R3CN90N7NT";
 protected Dimension size;
 String productname;
 	
@@ -39,7 +39,7 @@ String productname;
 		capabilities.setCapability("udid", UDID);
 		capabilities.setCapability("appPackage", "com.onestore.iap.apisample.test1");
 		capabilities.setCapability("appActivity", "com.onestore.iap.apisample.ApiCallActivity");
-		capabilities.setCapability("platformVersion", "10");
+		capabilities.setCapability("platformVersion", "12");
 		driver = new AndroidDriver<>(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		}	
