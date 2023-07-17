@@ -81,7 +81,7 @@ public class iAPv17_SKT_E2E_Test extends BaseDriver_iAPv17_SKT {
 			System.out.println("-----Coupon Cancel");
 		}
 
-		driver.swipe(701, 2852, 701, 2852, -1); // 결제버튼 SM-G986N / Galaxy S20 Plus
+		driver.swipe(537, 2127, 537, 2127, -1); // 결제버튼 SM-G991N / Galaxy S21
 		System.out.println("-----ClickPurchaseButton");
 		Thread.sleep(2500);
 
