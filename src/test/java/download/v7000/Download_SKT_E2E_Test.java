@@ -113,6 +113,13 @@ public class Download_SKT_E2E_Test extends BaseDriver_Download_SKT {
 		double startTimeCompletedownload = System.nanoTime();
 		System.out.println(startTimeCompletedownload);
 
+		try{
+            driver.findElementById("com.skt.skaf.A000Z00040:id/btn1").click();
+			Thread.sleep(3000);
+		}catch(Exception e){
+
+		}
+
 		i = 0;
 		while (i < 10000) {
 			try {
