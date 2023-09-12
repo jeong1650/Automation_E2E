@@ -35,7 +35,7 @@ public class MKT_reword extends OSC_Base_text {
 
 		Thread.sleep(2000);
 	
-		driver.findElementByXPath("//android.view.View[@text='오늘의 혜택 받기 완료']").isDisplayed();
+		driver.findElementByXPath("//android.widget.TextView[@text='오늘의 혜택 받기 완료']").isDisplayed();
 		
 		result = "PASS";
 	}
