@@ -16,8 +16,8 @@ public class MKT_reword extends OSC_Base_text {
 	 */
 
 	@Test
-	public void MKT_CAN() throws Exception {
-		TCID = "날마다 혜택 체크";
+	public void RewordCheck() throws Exception {
+		TCID = "RewordCheck";
 		result = "FAIL";
 		size = driver.manage().window().getSize();
 
