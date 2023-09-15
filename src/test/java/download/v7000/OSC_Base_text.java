@@ -26,7 +26,7 @@ public class OSC_Base_text {
 		capabilities.setCapability("deviceName", "appium");
 		capabilities.setCapability("unicodeKeyboard", true);
 		capabilities.setCapability("resetKeyboard", "true");
-		capabilities.setCapability("udid", "R3CRB0E2RM");
+		capabilities.setCapability("udid", "R3CMB0PNA7");
 		capabilities.setCapability("appPackage", "com.skt.skaf.A000Z00040");
 		capabilities.setCapability("appActivity", "A000Z00040");
 		capabilities.setCapability("platformVersion", "13.0.0");
