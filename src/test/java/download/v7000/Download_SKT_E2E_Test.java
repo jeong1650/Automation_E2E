@@ -165,7 +165,7 @@ public class Download_SKT_E2E_Test extends BaseDriver_Download_SKT {
 
 		}
 		StringBuffer resultdata = new StringBuffer();
-		resultdata.append(TCID + ":" + result + "\n");
+		resultdata.append(TCID + ":" + result + "("+ time + ")" + "\n");
 
 		try {
 			PrintWriter pw = new PrintWriter(new FileWriter("C:\\Download_SKT_CSV\\SKT_DL_E2E.txt", true));
