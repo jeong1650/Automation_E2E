@@ -201,17 +201,16 @@ public class Download_SKT_E2E_Test extends BaseDriver_Download_SKT {
 			System.out.println("파일 읽기중 에러");
 		}
 
-		for(i = 0; i < N_list.size(); i++){ // 저장된 Array의 크기만큼 루프
+		for(i = 0; i < N_list.size(); i++){  // 저장된 Array의 크기만큼 루프
 			System.out.println(N_list.get(i)); // 순서대로 출력
 			if (N_list.get(i).contains("PASS")){
 				passcount = + 1;
 			}else {
 				failcount = + 1;
 			}
-			System.out.println(Integer.toString(passcount));
-			System.out.println(Integer.toString(failcount));
 		}
-
+		System.out.println(Integer.toString(passcount));
+		System.out.println(Integer.toString(failcount));
 
 	}
 }
