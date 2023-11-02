@@ -14,7 +14,8 @@ import lib.Cmd;
 import java.util.List;
 
 public class Download_SKT_E2E_Test extends BaseDriver_Download_SKT {
-
+	int passcount = 0;
+	int failcount = 0;
 	/* -----------------------------------------------------------------------------
 	 * @ Editor = Park Cheolmin
 	 * @ TCID = Download_E2E
@@ -165,7 +166,7 @@ public class Download_SKT_E2E_Test extends BaseDriver_Download_SKT {
 
 		}
 		StringBuffer resultdata = new StringBuffer();
-		resultdata.append(TCID + ":" + result + "("+ time + ")" + "\n");
+		resultdata.append("수행 완료 시간 : " + time + "\n"+ TCID + ":" + result + "\n");
 
 		try {
 			PrintWriter pw = new PrintWriter(new FileWriter("C:\\Download_SKT_Result\\SKT_DL_result.txt", true));
@@ -202,6 +203,13 @@ public class Download_SKT_E2E_Test extends BaseDriver_Download_SKT {
 
 		for(i = 0; i < N_list.size(); i++){ // 저장된 Array의 크기만큼 루프
 			System.out.println(N_list.get(i)); // 순서대로 출력
+			if (N_list.get(i).contains("PASS")){
+				passcount = + 1;
+			}else {
+				failcount = + 1;
+			}
+			System.out.println(Integer.toString(passcount));
+			System.out.println(Integer.toString(failcount));
 		}
 
 
