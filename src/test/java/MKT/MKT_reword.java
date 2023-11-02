@@ -1,4 +1,4 @@
-package download.v7000;
+package MKT;
 
 import org.junit.Test;
 import org.openqa.selenium.By;
