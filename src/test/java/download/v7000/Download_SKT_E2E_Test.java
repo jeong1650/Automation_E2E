@@ -205,7 +205,8 @@ public class Download_SKT_E2E_Test extends BaseDriver_Download_SKT {
 			System.out.println(N_list.get(i)); // 순서대로 출력
 			if (N_list.get(i).contains("PASS")){
 				passcount = + 1;
-			}else {
+			}
+			else if(N_list.get(i).contains("FAIL")) {
 				failcount = + 1;
 			}
 		}
