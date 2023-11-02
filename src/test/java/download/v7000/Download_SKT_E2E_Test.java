@@ -14,8 +14,8 @@ import lib.Cmd;
 import java.util.List;
 
 public class Download_SKT_E2E_Test extends BaseDriver_Download_SKT {
-	int passcount = 0;
-	int failcount = 0;
+	int passcount ;
+	int failcount ;
 	/* -----------------------------------------------------------------------------
 	 * @ Editor = Park Cheolmin
 	 * @ TCID = Download_E2E
