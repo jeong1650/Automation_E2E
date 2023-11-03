@@ -14,8 +14,8 @@ import lib.Cmd;
 import java.util.List;
 
 public class Download_SKT_E2E_Test extends BaseDriver_Download_SKT {
-	int passcount ;
-	int failcount ;
+	public static int passcount ;
+
 	/* -----------------------------------------------------------------------------
 	 * @ Editor = Park Cheolmin
 	 * @ TCID = Download_E2E
@@ -145,7 +145,9 @@ public class Download_SKT_E2E_Test extends BaseDriver_Download_SKT {
 		System.out.println(" / " + " Completedownload E2E Result / " + CompletedownloadResult + "s");
 		System.out.println("--------------------------------------------------");
 
+
 		result = "PASS";
+
 
 		ResultPrint();
 		SimpleDateFormat sdf = new SimpleDateFormat("YYYY/MM/dd kk:mm");
@@ -201,17 +203,14 @@ public class Download_SKT_E2E_Test extends BaseDriver_Download_SKT {
 			System.out.println("파일 읽기중 에러");
 		}
 
+		String word = "PASS";
 		for(i = 0; i < N_list.size(); i++){  // 저장된 Array의 크기만큼 루프
-			System.out.println(N_list.get(i)); // 순서대로 출력
-			if (N_list.get(i).contains("PASS")){
-				passcount = + 1;
-			}
-			else if(N_list.get(i).contains("FAIL")) {
-				failcount = + 1;
-			}
+               if (word.equals(N_list.get(i))){
+				   passcount++;
+			   }
+
 		}
-		System.out.println(Integer.toString(passcount));
-		System.out.println(Integer.toString(failcount));
+		System.out.println(passcount);
 
 	}
 }
