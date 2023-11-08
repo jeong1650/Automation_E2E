@@ -9,8 +9,8 @@
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<configuration>
-					<source>7</source>
-					<target>7</target>
+					<source>11</source>
+					<target>11</target>
 				</configuration>
 			</plugin>
 		</plugins>
@@ -63,6 +63,7 @@
         <version>2.6</version>
         <type>maven-plugin</type>
     </dependency>
+	
    <dependency>
             <groupId>com.google.gdata</groupId>
             <artifactId>core</artifactId>
@@ -85,5 +86,10 @@
         	<artifactId>google-oauth-client-jetty</artifactId>
         	<version>1.11.0-beta</version>
         </dependency>
+		<dependency>
+    <groupId>com.googlecode.json-simple</groupId>
+    <artifactId>json-simple</artifactId>
+    <version>1.1.1</version>
+</dependency>		 
 	</dependencies>
 </project>
