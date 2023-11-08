@@ -1,6 +1,7 @@
 package download.v7000;
 
 import java.io.*;
+import java.nio.IntBuffer;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -186,6 +187,21 @@ public class Download_SKT_E2E_Test extends BaseDriver_Download_SKT {
 		} catch (Exception e) {
 
 		}
+		
+		StringBuffer Pcount = new StringBuffer();
+		Pcount.append(String.valueOf(passcount));
+		try {
+			PrintWriter pw = new PrintWriter(new FileWriter("C:\\Download_SKT_Result\\PassCount.txt", true));
+
+			pw.write(Pcount.toString());
+
+			pw.flush();
+			pw.close();
+		} catch (Exception e) {
+
+		}
+
+
 
 		ArrayList<String> N_list = new ArrayList<String>(); // 리스트 선언
 
