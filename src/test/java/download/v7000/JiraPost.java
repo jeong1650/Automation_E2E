@@ -156,7 +156,7 @@ public void JiraTest() throws Exception{
 
     System.out.println("결과 : " + buffer.toString());
 
-//    FileDelete();
+    FileDelete();
 }
 
     public static void FileDelete(){
