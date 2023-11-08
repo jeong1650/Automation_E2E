@@ -14,11 +14,10 @@ import lib.Cmd;
 
 import java.util.List;
 
-import static download.v7000.JiraPost.passlist;
 
 public class Download_SKT_E2E_Test extends BaseDriver_Download_SKT {
 	public static int passcount ;
-
+	public static int PcountSum = 0;
 	/* -----------------------------------------------------------------------------
 	 * @ Editor = Park Cheolmin
 	 * @ TCID = Download_E2E
@@ -29,7 +28,7 @@ public class Download_SKT_E2E_Test extends BaseDriver_Download_SKT {
 		TCID = "Download_E2E_SKT ";
 		result = "FAIL";
 		size = driver.manage().window().getSize();
-
+		int PcountSum = 0;
 		Cmd cmd = new Cmd();
 		System.out.println(cmd.execCommand(cmd.inputCommand("adb -s " + UDID + " uninstall com.naver.labs.translator")).trim());
 		String oscVer = cmd.execCommand(cmd.inputCommand("adb -s " + UDID + " shell dumpsys package com.skt.skaf.A000Z00040 | grep -m 1 versionName")).trim();
@@ -153,7 +152,6 @@ public class Download_SKT_E2E_Test extends BaseDriver_Download_SKT {
 
 		if (result.contains("PASS")){
 			passcount++;
-			passlist.add(passcount);
 		}
 
 		ResultPrint();
@@ -175,7 +173,7 @@ public class Download_SKT_E2E_Test extends BaseDriver_Download_SKT {
 
 		}
 		StringBuffer resultdata = new StringBuffer();
-		resultdata.append(TCID + ":" + result+ "\n");
+		resultdata.append("수행 완료 시간 : " + time+ "\n" +TCID + ":" + result+ "\n");
 
 		try {
 			PrintWriter pw = new PrintWriter(new FileWriter("C:\\Download_SKT_Result\\SKT_DL_result.txt", true));
@@ -187,9 +185,9 @@ public class Download_SKT_E2E_Test extends BaseDriver_Download_SKT {
 		} catch (Exception e) {
 
 		}
-		
+
 		StringBuffer Pcount = new StringBuffer();
-		Pcount.append(String.valueOf(passcount));
+		Pcount.append(String.valueOf(passcount)+ "\n");
 		try {
 			PrintWriter pw = new PrintWriter(new FileWriter("C:\\Download_SKT_Result\\PassCount.txt", true));
 
@@ -201,7 +199,29 @@ public class Download_SKT_E2E_Test extends BaseDriver_Download_SKT {
 
 		}
 
+		ArrayList<Integer> P_list = new ArrayList<Integer>();
+		File c_note = new File("C:\\Download_SKT_Result\\PassCount.txt");
+		try{
+			BufferedReader br = new BufferedReader(new FileReader(c_note));
+			String cou = br.readLine();
+			while(cou != null){
+				P_list.add(Integer.valueOf(cou));
+				cou = br.readLine();
+			}
+			for(i = 0; i < P_list.size(); i++){  // 저장된 Array의 크기만큼 루프
 
+				PcountSum += P_list.get(i);
+			}
+			br.close();
+		} catch (NullPointerException e){ // null이 있을 경우
+			System.out.println("null");
+		} catch (FileNotFoundException e){ // 파일을 찾을 수 없는 경우
+			e.getStackTrace();
+			System.out.println("파일 못찾음");
+		} catch (IOException e){ // 파일 읽기 중 에러가 발생한 경우
+			e.getStackTrace();
+			System.out.println("파일 읽기중 에러");
+		}
 
 		ArrayList<String> N_list = new ArrayList<String>(); // 리스트 선언
 
@@ -231,6 +251,6 @@ public class Download_SKT_E2E_Test extends BaseDriver_Download_SKT {
 			System.out.println(N_list.get(i));
 
 		}
-		System.out.println(passlist);
+		System.out.println(PcountSum);
 	}
 }

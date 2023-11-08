@@ -17,16 +17,10 @@ import static download.v7000.Download_SKT_E2E_Test.passcount;
 
 
 
-public class JiraPost extends BaseDriver_Download_SKT  implements CountSave{
+public class JiraPost extends Download_SKT_E2E_Test {
 //    public static ArrayList<Integer> passlist = new ArrayList<>();
 static double passsum = 0;
-    @Override
-    public void Count() {
 
-        for (int i=0; i<passlist.size(); i++){
-            passsum += passlist.get(i);
-        }
-    }
     public static void main(String[] args) throws Exception {
 
         String str = Files.readString(Paths.get("C:\\Download_SKT_Result\\SKT_DL_result.txt"));
@@ -34,9 +28,9 @@ static double passsum = 0;
         double failcount;
 
 
-        failcount = total_Scripts - passsum;
+        failcount = total_Scripts - PcountSum;
 
-        double Total_Percent = passsum / total_Scripts;
+        double Total_Percent = PcountSum / total_Scripts;
 
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         Date date = new Date(System.currentTimeMillis());
@@ -51,7 +45,7 @@ static double passsum = 0;
         Bon.put("summary",TCID);
         Bon.put("description",str);
         Bon.put("issuetype",data2);
-        Bon.put("customfield_12145",passsum);
+        Bon.put("customfield_12145",PcountSum);
         Bon.put("customfield_12146",failcount);
         Bon.put("customfield_12147",total_Scripts);
         Bon.put("customfield_12148",Math.round(Total_Percent*100));
@@ -136,7 +130,24 @@ static double passsum = 0;
 
         System.out.println("결과 : " + buffer.toString());
 
+        FileDelete();
     }
+    public static void FileDelete(){
+        String TextFilePath = "C:\\Download_SKT_Result\\SKT_DL_result.txt";
+        File DeleteText = new File(TextFilePath);
+        if (DeleteText.exists()){
+            DeleteText.delete();
+        }else {
+            System.out.println("파일이 존재하지 않습니다.");
+        }
 
+        String CountPath = "C:\\Download_SKT_Result\\PassCount.txt";
+        File Deletecount = new File(CountPath);
+        if (Deletecount.exists()){
+            Deletecount.delete();
+        }else {
+            System.out.println("파일이 존재하지 않습니다.");
+        }
+    }
 
 }
