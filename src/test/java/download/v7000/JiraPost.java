@@ -17,19 +17,22 @@ import static download.v7000.Download_SKT_E2E_Test.passcount;
 
 
 
-public class JiraPost extends BaseDriver_Download_SKT  {
-    public static ArrayList<Integer> passlist = new ArrayList<>();
+public class JiraPost extends BaseDriver_Download_SKT  implements CountSave{
+//    public static ArrayList<Integer> passlist = new ArrayList<>();
+static double passsum = 0;
+    @Override
+    public void Count() {
+
+        for (int i=0; i<passlist.size(); i++){
+            passsum += passlist.get(i);
+        }
+    }
     public static void main(String[] args) throws Exception {
 
         String str = Files.readString(Paths.get("C:\\Download_SKT_Result\\SKT_DL_result.txt"));
         double total_Scripts = 26;
         double failcount;
 
-        double passsum = 0;
-
-        for (int i=0; i<passlist.size(); i++){
-            passsum += passlist.get(i);
-        }
 
         failcount = total_Scripts - passsum;
 
@@ -134,5 +137,6 @@ public class JiraPost extends BaseDriver_Download_SKT  {
         System.out.println("결과 : " + buffer.toString());
 
     }
+
 
 }
