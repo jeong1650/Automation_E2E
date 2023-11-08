@@ -5,6 +5,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.net.URL;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
@@ -27,7 +28,7 @@ public static String result = "";
 public static String TCID = "";
 public static String UDID = "R3CN90N7NT";
 protected Dimension size;
-
+ArrayList<Integer> passlist = new ArrayList<Integer>();
 String productname;
 	
 	@Before

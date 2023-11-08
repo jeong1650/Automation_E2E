@@ -148,6 +148,10 @@ public class Download_SKT_E2E_Test extends BaseDriver_Download_SKT {
 
 		result = "PASS";
 
+		if (result.contains("PASS")){
+			passcount++;
+			passlist.add(passcount);
+		}
 
 		ResultPrint();
 		SimpleDateFormat sdf = new SimpleDateFormat("YYYY/MM/dd kk:mm");
@@ -209,6 +213,6 @@ public class Download_SKT_E2E_Test extends BaseDriver_Download_SKT {
 			System.out.println(N_list.get(i));
 
 		}
-
+		System.out.println(passlist);
 	}
 }
