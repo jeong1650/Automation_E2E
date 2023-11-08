@@ -14,10 +14,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-import static download.v7000.Download_SKT_E2E_Test.passcount;
-
-
-
 public class JiraPost extends Download_SKT_E2E_Test {
 
 @Test

@@ -199,36 +199,5 @@ public class Download_SKT_E2E_Test extends BaseDriver_Download_SKT {
 
 		}
 
-
-
-		ArrayList<String> N_list = new ArrayList<String>(); // 리스트 선언
-
-		File note = new File("C:\\Download_SKT_Result\\SKT_DL_result.txt");
-		try{
-			BufferedReader br = new BufferedReader(new FileReader(note));
-			String str = br.readLine();
-			while(str != null){
-				N_list.add(str);
-				str = br.readLine();
-			}
-
-			br.close();
-		} catch (NullPointerException e){ // null이 있을 경우
-			System.out.println("null");
-		} catch (FileNotFoundException e){ // 파일을 찾을 수 없는 경우
-			e.getStackTrace();
-			System.out.println("파일 못찾음");
-		} catch (IOException e){ // 파일 읽기 중 에러가 발생한 경우
-			e.getStackTrace();
-			System.out.println("파일 읽기중 에러");
-		}
-
-
-
-		for(i = 0; i < N_list.size(); i++){  // 저장된 Array의 크기만큼 루프
-			System.out.println(N_list.get(i));
-
-		}
-		System.out.println(PcountSum);
 	}
 }
