@@ -23,8 +23,8 @@ public class JiraPost extends Download_SKT_E2E_Test {
 @Test
 public void JiraTest() throws Exception{
     String str = Files.readString(Paths.get("C:\\Download_SKT_Result\\SKT_DL_result.txt"));
-    int total_Scripts = 26;
-    int failcount;
+    double total_Scripts = 26;
+    double failcount;
 
     ArrayList<Integer> P_list = new ArrayList<Integer>();
     File c_note = new File("C:\\Download_SKT_Result\\PassCount.txt");
