@@ -19,14 +19,36 @@ import static download.v7000.Download_SKT_E2E_Test.passcount;
 
 
 public class JiraPost extends Download_SKT_E2E_Test {
-//    public static ArrayList<Integer> passlist = new ArrayList<>();
-static double passsum = 0;
+
 @Test
 public void JiraTest() throws Exception{
     String str = Files.readString(Paths.get("C:\\Download_SKT_Result\\SKT_DL_result.txt"));
-    double total_Scripts = 26;
-    double failcount;
+    int total_Scripts = 26;
+    int failcount;
 
+    ArrayList<Integer> P_list = new ArrayList<Integer>();
+    File c_note = new File("C:\\Download_SKT_Result\\PassCount.txt");
+    try{
+        BufferedReader br = new BufferedReader(new FileReader(c_note));
+        String cou = br.readLine();
+        while(cou != null){
+            P_list.add(Integer.valueOf(cou));
+            cou = br.readLine();
+        }
+        for(int i = 0; i < P_list.size(); i++){  // 저장된 Array의 크기만큼 루프
+
+            PcountSum += P_list.get(i);
+        }
+        br.close();
+    } catch (NullPointerException e){ // null이 있을 경우
+        System.out.println("null");
+    } catch (FileNotFoundException e){ // 파일을 찾을 수 없는 경우
+        e.getStackTrace();
+        System.out.println("파일 못찾음");
+    } catch (IOException e){ // 파일 읽기 중 에러가 발생한 경우
+        e.getStackTrace();
+        System.out.println("파일 읽기중 에러");
+    }
 
     failcount = total_Scripts - PcountSum;
 
@@ -35,6 +57,10 @@ public void JiraTest() throws Exception{
     SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
     Date date = new Date(System.currentTimeMillis());
 
+    SimpleDateFormat Monformat = new SimpleDateFormat("MM-dd");
+    Date Mdate = new Date(System.currentTimeMillis());
+
+
     JSONObject Bon = new JSONObject();
     JSONObject data1 = new JSONObject();
     data1.put("key","QARESULT");
@@ -42,7 +68,7 @@ public void JiraTest() throws Exception{
     data2.put("id","11341");
 
     Bon.put("project",data1);
-    Bon.put("summary",TCID);
+    Bon.put("summary","OSC D/L E2E 결과"+"("+ Monformat.format(Mdate)+")");
     Bon.put("description",str);
     Bon.put("issuetype",data2);
     Bon.put("customfield_12145",PcountSum);
@@ -130,7 +156,7 @@ public void JiraTest() throws Exception{
 
     System.out.println("결과 : " + buffer.toString());
 
-    FileDelete();
+//    FileDelete();
 }
 
     public static void FileDelete(){
