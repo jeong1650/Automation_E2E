@@ -206,7 +206,9 @@ public class Download_SKT_E2E_Test extends BaseDriver_Download_SKT {
 		String word = "PASS";
 		for(i = 0; i < N_list.size(); i++){  // 저장된 Array의 크기만큼 루프
                if (word.contains(N_list.get(i))){
+				   System.out.println(N_list.get(i));
 				   passcount++;
+				   System.out.println(passcount);
 			   }
 
 		}
