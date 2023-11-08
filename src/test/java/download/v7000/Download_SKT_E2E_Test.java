@@ -175,7 +175,8 @@ public class Download_SKT_E2E_Test extends BaseDriver_Download_SKT {
 		StringBuffer resultdata = new StringBuffer();
 		if (result.contains("PASS")){
 			String Colorreselt = "<strong style=\"color:blue;\">PASS</strong>";
-			resultdata.append("수행 완료 시간 : " + time+ "\n" +TCID + ":" + Colorreselt+ "\n");
+			resultdata.append("수행 완료 시간 : " + time + "<br>" +TCID + ":" + Colorreselt+ "<br>");
+
 		}
 
 
