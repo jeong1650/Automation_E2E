@@ -168,7 +168,7 @@ public class Download_SKT_E2E_Test extends BaseDriver_Download_SKT {
 
 		}
 		StringBuffer resultdata = new StringBuffer();
-		resultdata.append(TCID + ":" + result );
+		resultdata.append(TCID + ":" + result+ "\n");
 
 		try {
 			PrintWriter pw = new PrintWriter(new FileWriter("C:\\Download_SKT_Result\\SKT_DL_result.txt", true));
@@ -203,14 +203,10 @@ public class Download_SKT_E2E_Test extends BaseDriver_Download_SKT {
 			System.out.println("파일 읽기중 에러");
 		}
 
-		String word = "PASS";
+
 
 		for(i = 0; i < N_list.size(); i++){  // 저장된 Array의 크기만큼 루프
 			System.out.println(N_list.get(i));
-               if (word.contains(N_list.get(i))){
-				   passcount++;
-				   System.out.println(passcount);
-			   }
 
 		}
 
