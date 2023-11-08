@@ -28,7 +28,7 @@ public static String result = "";
 public static String TCID = "";
 public static String UDID = "R3CN90N7NT";
 protected Dimension size;
-ArrayList<Integer> passlist;
+
 String productname;
 	
 	@Before

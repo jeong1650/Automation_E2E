@@ -13,6 +13,8 @@ import lib.Cmd;
 
 import java.util.List;
 
+import static download.v7000.JiraPost.passlist;
+
 public class Download_SKT_E2E_Test extends BaseDriver_Download_SKT {
 	public static int passcount ;
 
