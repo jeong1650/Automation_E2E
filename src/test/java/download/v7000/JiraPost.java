@@ -74,14 +74,9 @@ public void JiraTest() throws Exception{
     Bon.put("duedate",format.format(date));
 
     JSONObject result = new JSONObject();
-
     result.put("fields",Bon);
 
-    System.out.println(result);
-
-
     String apiUrl = "https://jira.onestorecorp.com/rest/api/2/issue";
-
     String token = "NDE1MTE4Njk0MTg5OgZlK2oolYQoO22CUcWM9fa+GhS4";
 
     URL url = null;
@@ -94,8 +89,6 @@ public void JiraTest() throws Exception{
 
     int connTimeout = 5000;
     int readTimeout = 3000;
-
-
 
     try
     {
@@ -148,7 +141,6 @@ public void JiraTest() throws Exception{
             ex.printStackTrace();
         }
     }
-
 
     System.out.println("결과 : " + buffer.toString());
 

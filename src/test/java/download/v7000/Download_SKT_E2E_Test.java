@@ -28,7 +28,6 @@ public class Download_SKT_E2E_Test extends BaseDriver_Download_SKT {
 		TCID = "Download_E2E_SKT";
 		result = "FAIL";
 		size = driver.manage().window().getSize();
-		int PcountSum = 0;
 		Cmd cmd = new Cmd();
 		System.out.println(cmd.execCommand(cmd.inputCommand("adb -s " + UDID + " uninstall com.naver.labs.translator")).trim());
 		String oscVer = cmd.execCommand(cmd.inputCommand("adb -s " + UDID + " shell dumpsys package com.skt.skaf.A000Z00040 | grep -m 1 versionName")).trim();
@@ -135,7 +134,6 @@ public class Download_SKT_E2E_Test extends BaseDriver_Download_SKT {
 			}
 		}
 
-
 		double endTimeCompletedownload = System.nanoTime();
 		System.out.println(endTimeCompletedownload);
 		double CompletedownloadResult = Double.parseDouble(String.format("%.2f",
@@ -146,8 +144,6 @@ public class Download_SKT_E2E_Test extends BaseDriver_Download_SKT {
 		System.out.println(" / " + " CompleteEnter E2E Result / " + CompleteEnterResult + "s");
 		System.out.println(" / " + " Completedownload E2E Result / " + CompletedownloadResult + "s");
 		System.out.println("--------------------------------------------------");
-
-
 		result = "PASS";
 
 		if (result.contains("PASS")){
@@ -175,11 +171,11 @@ public class Download_SKT_E2E_Test extends BaseDriver_Download_SKT {
 		StringBuffer resultdata = new StringBuffer();
 		if (result.contains("PASS")){
 			String PassReselt = "<strong style=\"color:blue;\">PASS</strong>";
-			resultdata.append("수행 완료 시간 : " + time + "<br>" +TCID + ":" + PassReselt+ "<br>");
+			resultdata.append("- " + TCID + ":" + PassReselt+ "<br>" + "수행 완료 시간 : " + time + "<br>");
 
 		} else {
 			String FailResult = "<strong style=\"color:red;\">FAIL</strong>";
-			resultdata.append("수행 완료 시간 : " + time + "<br>" +TCID + ":" + FailResult+ "<br>");
+			resultdata.append("- " + TCID + ":" + FailResult+ "<br>" + "수행 완료 시간 : " + time + "<br>");
 		}
 
 
