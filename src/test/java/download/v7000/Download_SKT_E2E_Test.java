@@ -168,27 +168,7 @@ public class Download_SKT_E2E_Test extends BaseDriver_Download_SKT {
 		} catch (Exception e) {
 
 		}
-		StringBuffer resultdata = new StringBuffer();
-		if (result.contains("PASS")){
-			String PassReselt = "<strong style=\"color:blue;\">PASS</strong>";
-			resultdata.append("- " + TCID + ":" + PassReselt+ "<br>" + "수행 완료 시간 : " + time + "<br>");
 
-		} else {
-			String FailResult = "<strong style=\"color:red;\">FAIL</strong>";
-			resultdata.append("- " + TCID + ":" + FailResult+ "<br>" + "수행 완료 시간 : " + time + "<br>");
-		}
-
-
-		try {
-			PrintWriter pw = new PrintWriter(new FileWriter("C:\\Download_SKT_Result\\SKT_DL_result.txt", true));
-
-			pw.write(resultdata.toString());
-
-			pw.flush();
-			pw.close();
-		} catch (Exception e) {
-
-		}
 
 		StringBuffer Pcount = new StringBuffer();
 		Pcount.append(String.valueOf(passcount)+ "\n");

@@ -3,6 +3,8 @@ package download.v7000;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileWriter;
+import java.io.PrintWriter;
 import java.net.URL;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -101,6 +103,31 @@ String productname;
 			} catch (Exception e) {
 				System.out.println(e.toString());
 			}	
+		}
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("YYYY/MM/dd kk:mm");
+		Date date = new Date();
+		String time = sdf.format(date);
+		StringBuffer resultdata = new StringBuffer();
+		if (result.contains("PASS")){
+			String PassReselt = "<strong style=\"color:blue;\">PASS</strong>";
+			resultdata.append("- " + TCID + ":" + PassReselt+ "<br>" + "수행 완료 시간 : " + time + "<br>");
+
+		} else {
+			String FailResult = "<strong style=\"color:red;\">FAIL</strong>";
+			resultdata.append("- " + TCID + ":" + FailResult+ "<br>" + "수행 완료 시간 : " + time + "<br>");
+		}
+
+
+		try {
+			PrintWriter pw = new PrintWriter(new FileWriter("C:\\Download_SKT_Result\\SKT_DL_result.txt", true));
+
+			pw.write(resultdata.toString());
+
+			pw.flush();
+			pw.close();
+		} catch (Exception e) {
+
 		}
 		System.out.println("======================================");
 		System.out.println("        DownloadSKTResult : " + result);
