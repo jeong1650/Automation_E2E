@@ -90,17 +90,12 @@ String productname;
 	
 	@After
 	public void end() {
-		File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
-		SimpleDateFormat sdf = new SimpleDateFormat("YYYY_MM_dd_kk_mm");
-		SimpleDateFormat result_sdf = new SimpleDateFormat("YYYY/MM/dd kk:mm");
-		Date date = new Date();
-		String FileName = sdf.format(date);
-		String time = result_sdf.format(date);
-		StringBuffer resultdata = new StringBuffer();
-		
 		if (result != "PASS") {
-			try {
-				String filePath = "C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\Download_SKT_E2E\\failSC\\";
+			File scrFile = ((TakesScreenshot)driver).getScreenshotAs(OutputType.FILE);
+			SimpleDateFormat sdf = new SimpleDateFormat("YYYY_MM_dd_kk_mm");
+			Date date = new Date();
+			String FileName = sdf.format(date);
+			try { String filePath = "C:\\ProgramData\\Jenkins\\.jenkins\\workspace\\Download_SKT_E2E\\failSC\\";
 				org.apache.commons.io.FileUtils.copyFile(scrFile, new File(filePath + FileName +".png"));
 				File pngOriginal = new File(filePath + FileName +".png");
 				File pngResized = new File(filePath + FileName +".png");
@@ -108,12 +103,21 @@ String productname;
 			} catch (Exception e) {
 				System.out.println(e.toString());
 			}
-			String FailResult = "<strong style=\"color:red;\">FAIL</strong>";
-			resultdata.append("- " + TCID + ":" + FailResult+ "<br>" + "수행 완료 시간 : " + time + "<br>");
-		} else{
+		}
+
+		SimpleDateFormat sdf = new SimpleDateFormat("YYYY/MM/dd kk:mm");
+		Date date = new Date();
+		String time = sdf.format(date);
+		StringBuffer resultdata = new StringBuffer();
+		if (result.contains("PASS")){
 			String PassReselt = "<strong style=\"color:blue;\">PASS</strong>";
 			resultdata.append("- " + TCID + ":" + PassReselt+ "<br>" + "수행 완료 시간 : " + time + "<br>");
+
+		} else {
+			String FailResult = "<strong style=\"color:red;\">FAIL</strong>";
+			resultdata.append("- " + TCID + ":" + FailResult+ "<br>" + "수행 완료 시간 : " + time + "<br>");
 		}
+
 
 		try {
 			PrintWriter pw = new PrintWriter(new FileWriter("C:\\Download_SKT_Result\\SKT_DL_result.txt", true));
