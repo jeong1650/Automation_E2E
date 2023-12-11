@@ -14,8 +14,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class JiraPost extends Download_SKT_E2E_Test {
-
+public class JiraPost {
+ double PcountSum = 0;
 @Test
 public void JiraTest() throws Exception{
     String str = Files.readString(Paths.get("C:\\Download_SKT_Result\\SKT_DL_result.txt"));
