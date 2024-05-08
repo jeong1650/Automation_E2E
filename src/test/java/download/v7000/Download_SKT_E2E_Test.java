@@ -53,7 +53,7 @@ public class Download_SKT_E2E_Test extends BaseDriver_Download_SKT {
 		System.out.println("------searchKeywordwrite-------");
 
 		Thread.sleep(2000);
-		driver.executeScript("mobile: performEditorAction", ImmutableMap.of("action", "search"));
+		driver.executeScript("mobile: performEditorAction", ImmutableMap.of("action", "done"));
 		System.out.println("------searchiconClick-------");
 
 		double startTimesearchEnter = System.nanoTime();
