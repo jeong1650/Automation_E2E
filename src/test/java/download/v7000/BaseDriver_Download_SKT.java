@@ -28,7 +28,7 @@ public class BaseDriver_Download_SKT {
 public static AndroidDriver<AndroidElement> driver;
 public static String result = "";
 public static String TCID = "";
-public static String UDID = "R3CN90N7NT";
+public static String UDID = "R3CW90K2WLV";
 protected Dimension size;
 
 String productname;
@@ -41,7 +41,7 @@ String productname;
 		capabilities.setCapability("udid", UDID);
 		capabilities.setCapability("appPackage", "com.skt.skaf.A000Z00040");
 		capabilities.setCapability("appActivity", "A000Z00040");
-		capabilities.setCapability("platformVersion", "12");
+		capabilities.setCapability("platformVersion", "14");
 		driver = new AndroidDriver<>(new URL("http://127.0.0.1:7723/wd/hub"), capabilities);
 		driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 		}	
