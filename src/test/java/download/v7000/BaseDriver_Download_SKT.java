@@ -52,6 +52,7 @@ String productname;
 			driver.findElementById("com.skt.skaf.A000Z00040:id/event_popup_close").isDisplayed();
 			System.out.println("----------eventPopup----------");
 			driver.findElementById("com.skt.skaf.A000Z00040:id/event_popup_close").click();
+			Thread.sleep(3000);
 		} catch (Exception e) {
 			System.out.println("popupfail");
 		}
@@ -66,6 +67,7 @@ String productname;
 			driver.findElementById("com.skt.skaf.A000Z00040:id/do_after_btn").isDisplayed();
 			System.out.println("----------memberChangePopup----------");
 			driver.findElementById("com.skt.skaf.A000Z00040:id/do_after_btn").click();
+			Thread.sleep(3000);
 		} catch (Exception e) {
 			System.out.println("memberskip fail");
 		}
