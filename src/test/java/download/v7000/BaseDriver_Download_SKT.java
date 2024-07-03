@@ -48,17 +48,24 @@ String productname;
 
 	public void popupCheck() throws Exception {
 		Thread.sleep(3000);
+//		try {
+//			driver.findElementById("com.skt.skaf.A000Z00040:id/event_popup_close").isDisplayed();
+//			System.out.println("----------eventPopup----------");
+//			driver.findElementById("com.skt.skaf.A000Z00040:id/event_popup_close").click();
+//			Thread.sleep(3000);
+//		} catch (Exception e) {
+//			System.out.println("popupfail");
+//		}
+//		try {
+//			driver.findElementByXPath("//*[@resource-id='todayCloseBtn']").click();
+//			System.out.println("----------eventPopup----------");
+//		} catch (Exception e) {
+//			System.out.println("popupfail");
+//		}
 		try {
-			driver.findElementById("com.skt.skaf.A000Z00040:id/event_popup_close").isDisplayed();
-			System.out.println("----------eventPopup----------");
-			driver.findElementById("com.skt.skaf.A000Z00040:id/event_popup_close").click();
+			driver.findElementByXPath("//*[@text='오늘 그만 보기']").isDisplayed();
+			driver.findElementByXPath("//*[@text='오늘 그만 보기']").click();
 			Thread.sleep(3000);
-		} catch (Exception e) {
-			System.out.println("popupfail");
-		}
-		try {
-			driver.findElementByXPath("//*[@resource-id='todayCloseBtn']").click();
-			System.out.println("----------eventPopup----------");
 		} catch (Exception e) {
 			System.out.println("popupfail");
 		}
