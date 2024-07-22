@@ -64,7 +64,7 @@ String productname;
 //		}
 		try {
 			Thread.sleep(3000);
-			driver.findElement(AppiumBy.id("com.skt.skaf.A000Z00040:id/event_popup_webview")).isDisplayed();
+			driver.findElementById("com.skt.skaf.A000Z00040:id/event_popup_webview").isDisplayed();
 			driver.navigate().back();
 		} catch (Exception e) {
 			System.out.println("popupfail");
