@@ -63,9 +63,9 @@ String productname;
 //			System.out.println("popupfail");
 //		}
 		try {
-			driver.findElementByXPath("//*[@text='오늘 그만 보기']").isDisplayed();
-			driver.findElementByXPath("//*[@text='오늘 그만 보기']").click();
 			Thread.sleep(3000);
+			driver.findElement(AppiumBy.id("com.skt.skaf.A000Z00040:id/event_popup_webview")).isDisplayed();
+			driver.navigate().back();
 		} catch (Exception e) {
 			System.out.println("popupfail");
 		}
